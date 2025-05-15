@@ -1,0 +1,2724 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tekeoglu</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+    --primary-color: #e74c3c;
+    --secondary-color: #f39c12;
+    --dark-color: #2c3e50;
+    --light-color: #ecf0f1;
+    --success-color: #2ecc71;
+    --warning-color: #f1c40f;
+    --danger-color: #e74c3c;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path fill="%23f8f9fa" d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm-40 5c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM15 45c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM0 0h100v100H0z"/></svg>');
+    min-height: 100vh;
+    color: var(--dark-color);
+}
+
+.container {
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: none;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    padding: 15px;
+    border-bottom: none;
+    text-align: center;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #c0392b;
+    border-color: #c0392b;
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #d35400;
+    border-color: #d35400;
+    transform: scale(1.05);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #27ae60;
+    border-color: #27ae60;
+    transform: scale(1.05);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+    border-color: #c0392b;
+    transform: scale(1.05);
+}
+
+.form-control {
+    border-radius: 30px;
+    padding: 10px 20px;
+    border: 2px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(231, 76, 60, 0.25);
+}
+
+.timer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer i {
+    margin-right: 10px;
+}
+
+.progress {
+    height: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+}
+
+.progress-bar {
+    background-color: var(--primary-color);
+    border-radius: 5px;
+}
+
+.option-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.option-btn:hover {
+    border-color: var(--primary-color);
+    background-color: #fcf5f5;
+}
+
+.option-btn.selected {
+    border-color: var(--primary-color);
+    background-color: #fcf5f5;
+}
+
+.option-btn.correct {
+    border-color: var(--success-color);
+    background-color: #f0fff0;
+}
+
+.option-btn.incorrect {
+    border-color: var(--danger-color);
+    background-color: #fff0f0;
+}
+
+.score-display {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.score-display .badge {
+    font-size: 1rem;
+    margin-left: 10px;
+}
+
+.lifeline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    color: white;
+    font-size: 1.2rem;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lifeline:hover {
+    transform: scale(1.1);
+    background-color: #d35400;
+}
+
+.lifeline.used {
+    background-color: #7f8c8d;
+    cursor: not-allowed;
+}
+
+#welcomeScreen {
+    text-align: center;
+}
+
+#welcomeScreen img {
+    max-width: 150px;
+    margin-bottom: 20px;
+}
+
+#gameScreen, #writingScreen, #resultScreen {
+    display: none;
+}
+
+.game-title {
+    font-weight: 800;
+    color: var(--dark-color);
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.subtitle {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.question-number {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.question-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.writing-question {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.custom-control {
+    margin-bottom: 15px;
+}
+
+.result-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.result-score {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.result-message {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: var(--dark-color);
+}
+
+.badge {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    border-radius: 20px;
+}
+
+.badge-primary {
+    background-color: var(--primary-color);
+}
+
+.badge-success {
+    background-color: var(--success-color);
+}
+
+.badge-warning {
+    background-color: var(--warning-color);
+}
+
+.badge-danger {
+    background-color: var(--danger-color);
+}
+
+.feedback {
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.feedback-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 5px solid var(--success-color);
+}
+
+.feedback-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 5px solid var(--danger-color);
+}
+
+.book-icon {
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    z-index: 1000;
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+/* Modal styling */
+.modal-content {
+    border-radius: 15px;
+    border: none;
+}
+
+.modal-header {
+    background-color: var(--primary-color);
+    color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding-top: 10px;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .game-title {
+        font-size: 2rem;
+    }
+
+    .question-text {
+        font-size: 1.2rem;
+    }
+}
+
+/* Tooltip */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: var(--dark-color);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Shake animation for wrong answers */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Pulse animation for correct answers */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 0.5s ease-in-out;
+}
+
+/* Floating book animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Progress bar animation */
+@keyframes progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+.animate-progress {
+    animation: progress 30s linear forwards;
+}
+
+/* Modal animation */
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal.show .modal-content {
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+/* Special feedback modal */
+.special-feedback {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px 40px;
+    border-radius: 10px;
+    font-size: 2rem;
+    font-weight: bold;
+    z-index: 2000;
+    display: none;
+}
+
+/* YENİ EKLENEN STILLER */
+.difficulty-selector {
+    margin-bottom: 20px;
+}
+
+.difficulty-btn {
+    width: 32%;
+    transition: all 0.3s;
+}
+
+.difficulty-btn.active {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.streak-counter {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--success-color);
+    color: white;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-weight: bold;
+    display: none;
+}
+
+.hint-container {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.hint-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.hint-btn:hover {
+    transform: scale(1.05);
+}
+
+.hint-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.hint-text {
+    background-color: #f8f9fa;
+    border-left: 5px solid var(--secondary-color);
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    display: none;
+}
+
+.achievement {
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-left: 5px solid var(--secondary-color);
+}
+
+.achievement-icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    color: var(--secondary-color);
+}
+
+.achievement-locked .achievement-icon {
+    color: #aaa;
+}
+
+.achievement-text {
+    flex-grow: 1;
+}
+
+.achievement-locked {
+    opacity: 0.7;
+}
+
+.achievement-name {
+    font-weight: bold;
+    margin: 0;
+}
+
+.achievement-desc {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.streak-indicator {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--success-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-left: 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.streak-indicator i {
+    margin-right: 5px;
+}
+
+.streak-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #eee;
+}
+
+.streak-progress-bar {
+    height: 100%;
+    background-color: var(--success-color);
+    width: 0%;
+    transition: width 0.3s;
+}
+
+.bonus-points {
+    position: absolute;
+    font-weight: bold;
+    color: var(--success-color);
+    animation: bonusPoints 1.5s forwards;
+    z-index: 10;
+}
+
+@keyframes bonusPoints {
+    0% { transform: translate(0, 0); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translate(0, -50px); opacity: 0; }
+}
+
+.time-bonus {
+    font-weight: bold;
+    color: var(--success-color);
+    margin-left: 10px;
+}
+
+.book-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.book-card-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.book-card-body {
+    padding: 15px;
+    background-color: white;
+}
+
+.book-card-footer {
+    background-color: #f8f9fa;
+    padding: 10px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.leaderboard-entry {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.leaderboard-position {
+    font-weight: bold;
+    margin-right: 15px;
+    width: 30px;
+}
+
+.leaderboard-name {
+    flex-grow: 1;
+}
+
+.leaderboard-score {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Bounce animation for correct streaks */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-20px);}
+    60% {transform: translateY(-10px);}
+}
+
+.bounce {
+    animation: bounce 1s;
+}
+
+/* Sliding notification */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: -300px;
+    background-color: var(--dark-color);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 2000;
+    transition: right 0.5s;
+    display: flex;
+    align-items: center;
+}
+
+.notification.show {
+    right: 20px;
+}
+
+.notification-icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+}
+
+.category-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.category-btn {
+    flex: 1 1 30%;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    background-color: #f8f9fa;
+    border: 2px solid #ddd;
+}
+
+.category-btn:hover {
+    background-color: #e9ecef;
+    border-color: var(--primary-color);
+}
+
+.category-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.difficulty-indicator {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.difficulty-easy {
+    background-color: var(--success-color);
+}
+
+.difficulty-medium {
+    background-color: var(--warning-color);
+}
+
+.difficulty-hard {
+    background-color: var(--danger-color);
+}
+
+.combo-meter {
+    text-align: center;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.combo-text {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.combo-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.combo-progress {
+    height: 100%;
+    background-color: var(--warning-color);
+    width: 0%;
+    transition: width 0.3s;
+}
+
+.leaderboard-table {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.leaderboard-table th, .leaderboard-table td {
+    padding: 10px 15px;
+    border: none;
+}
+
+.leaderboard-table tbody tr {
+    transition: all 0.3s;
+}
+
+.leaderboard-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.leaderboard-table .highlight {
+    background-color: #fffde7;
+    font-weight: bold;
+}
+
+.achievement-banner {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 10px;
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    z-index: 2000;
+    transition: bottom 0.5s;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+}
+
+.achievement-banner.show {
+    bottom: 20px;
+}
+
+.achievement-banner-icon {
+    font-size: 2rem;
+    margin-right: 15px;
+    color: var(--warning-color);
+}
+
+.achievement-banner-text h4 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.achievement-banner-text p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Customize scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #d35400;
+}
+
+/* Floating particles background */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.3;
+}
+
+</style>
+</head>
+<body>
+<div class="particles" id="particles"></div>
+<div class="container">
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="fade-in">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="game-title text-center">Final İçin Çalışma Oyunu</h1>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="float">
+                            <i class="fas fa-book-open fa-5x mb-4 text-primary"></i>
+                        </div>
+                        <h2 class="subtitle">Türk Tarihine Dair Kitapları ve Yazarlarını Öğrenin</h2>
+                        <p class="mb-4">Bu oyun, Türk tarihine ilişkin önemli kitapları ve yazarlarını öğrenmenize yardımcı olacak eğlenceli bir araçtır. Çoktan seçmeli sorular ve yazma alıştırmaları ile bilgilerinizi pekiştirin.</p>
+                        
+                        <div class="form-group mb-4">
+                            <input type="text" id="playerName" class="form-control" placeholder="Adınız">
+                        </div>
+                        
+                        <!-- Zorluk Seçimi -->
+                        <div class="difficulty-selector mb-4">
+                            <div class="row">
+                                <div class="col-12 mb-2">
+                                    <p>Zorluk Seviyesi:</p>
+                                </div>
+                                <div class="col-12">
+                                    <div class="btn-group w-100" role="group">
+                                        <button type="button" class="btn btn-outline-success difficulty-btn active" data-difficulty="easy">Kolay</button>
+                                        <button type="button" class="btn btn-outline-warning difficulty-btn" data-difficulty="medium">Orta</button>
+                                        <button type="button" class="btn btn-outline-danger difficulty-btn" data-difficulty="hard">Zor</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mod Seçimi -->
+                        <div class="difficulty-selector mb-4">
+                            <div class="row">
+                                <div class="col-12 mb-2">
+                                    <p>Oyun Modu:</p>
+                                </div>
+                                <div class="col-12">
+                                    <div class="btn-group w-100" role="group">
+                                        <button type="button" class="btn btn-outline-primary game-mode-btn active" data-mode="standard">Standart</button>
+                                        <button type="button" class="btn btn-outline-primary game-mode-btn" data-mode="time">Zamana Karşı</button>
+                                        <button type="button" class="btn btn-outline-primary game-mode-btn" data-mode="challenge">Meydan Okuma</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button id="startBtn" class="btn btn-primary btn-lg"><i class="fas fa-play me-2"></i> Oyunu Başlat</button>
+                            <button id="howToPlayBtn" class="btn btn-secondary"><i class="fas fa-question-circle me-2"></i> Nasıl Oynanır?</button>
+                            <button id="leaderboardBtn" class="btn btn-secondary"><i class="fas fa-trophy me-2"></i> Lider Tablosu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="fade-in">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <span id="playerNameDisplay"></span>
+                            <span class="streak-indicator" id="streakIndicator" style="display: none;">
+                                <i class="fas fa-fire"></i> <span id="streakCount">0</span>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="badge bg-primary"><i class="fas fa-star me-1"></i> Puan: <span id="scoreDisplay">0</span></span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="timer">
+                            <i class="fas fa-clock"></i> <span id="timerDisplay">30</span>
+                        </div>
+                        
+                        <div class="progress">
+                            <div id="timerBar" class="progress-bar" role="progressbar" style="width: 100%"></div>
+                        </div>
+                        
+                        <div class="question-number">Soru <span id="currentQuestionNumber">1</span>/<span id="totalQuestions">10</span></div>
+                        
+                        <div class="question-text" id="questionText">Bu soru yükleniyor...</div>
+                        
+                        <!-- İpucu Sistemi -->
+                        <div class="hint-container">
+                            <div class="hint-btn" id="eliminateBtn">
+                                <i class="fas fa-trash-alt"></i> Bir Seçeneği Ele
+                            </div>
+                            <div class="hint-btn" id="hintBtn">
+                                <i class="fas fa-lightbulb"></i> İpucu Al
+                            </div>
+                        </div>
+                        <div class="hint-text" id="hintText"></div>
+                        
+                        <div id="optionsContainer">
+                            <!-- Options will be generated here -->
+                        </div>
+                        
+                        <div id="feedback" class="feedback" style="display: none;"></div>
+                        
+                        <div class="combo-meter" id="comboMeter" style="display: none;">
+                            <div class="combo-text">Kombo: <span id="comboCount">0</span>x</div>
+                            <div class="combo-bar">
+                                <div id="comboProgress" class="combo-progress"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2 mt-4">
+                            <button id="nextBtn" class="btn btn-primary" style="display: none;"><i class="fas fa-arrow-right me-2"></i> Sonraki Soru</button>
+                        </div>
+                    </div>
+                    <div class="streak-progress">
+                        <div id="streakProgressBar" class="streak-progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Writing Screen -->
+    <div id="writingScreen" class="fade-in">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <span id="playerNameDisplay2"></span>
+                            <span class="streak-indicator" id="streakIndicator2" style="display: none;">
+                                <i class="fas fa-fire"></i> <span id="streakCount2">0</span>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="badge bg-primary"><i class="fas fa-star me-1"></i> Puan: <span id="scoreDisplay2">0</span></span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="timer">
+                            <i class="fas fa-clock"></i> <span id="timerDisplay2">45</span>
+                        </div>
+                        
+                        <div class="progress">
+                            <div id="timerBar2" class="progress-bar" role="progressbar" style="width: 100%"></div>
+                        </div>
+                        
+                        <div class="question-number">Yazma Sorusu <span id="currentWritingNumber">1</span>/<span id="totalWriting">5</span></div>
+                        
+                        <div class="writing-question" id="writingQuestion">Bu soru yükleniyor...</div>
+                        
+                        <div class="form-group mb-3">
+                            <input type="text" id="writingAnswer" class="form-control" placeholder="Cevabınızı buraya yazın">
+                        </div>
+                        
+                        <!-- İpucu Sistemi -->
+                        <div class="hint-container">
+                            <div class="hint-btn" id="writingHintBtn">
+                                <i class="fas fa-lightbulb"></i> İpucu Al
+                            </div>
+                        </div>
+                        <div class="hint-text" id="writingHintText"></div>
+                        
+                        <div id="writingFeedback" class="feedback" style="display: none;"></div>
+                        
+                        <div class="d-grid gap-2 mt-4">
+                            <button id="submitWritingBtn" class="btn btn-primary"><i class="fas fa-check me-2"></i> Cevabı Kontrol Et</button>
+                            <button id="nextWritingBtn" class="btn btn-primary" style="display: none;"><i class="fas fa-arrow-right me-2"></i> Sonraki Soru</button>
+                        </div>
+                    </div>
+                    <div class="streak-progress">
+                        <div id="streakProgressBar2" class="streak-progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Screen -->
+    <div id="resultScreen" class="fade-in">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center">Oyun Tamamlandı!</h2>
+                    </div>
+                    <div class="card-body text-center">
+                        <div id="resultIcon" class="result-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        
+                        <div class="result-score">
+                            <span id="finalScore">0</span> / <span id="totalScore">100</span>
+                        </div>
+                        
+                        <div class="result-message" id="resultMessage">
+                            Tebrikler! Harika bir skor elde ettiniz.
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <div class="badge bg-success w-100 py-2 mb-2">
+                                    <i class="fas fa-check me-1"></i> Doğru: <span id="correctAnswers">0</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="badge bg-danger w-100 py-2 mb-2">
+                                    <i class="fas fa-times me-1"></i> Yanlış: <span id="wrongAnswers">0</span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="badge bg-primary w-100 py-2 mb-2">
+                                    <i class="fas fa-clock me-1"></i> En Uzun Seri: <span id="bestStreak">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Kazanılan Başarılar -->
+                        <h4 class="mb-3">Kazanılan Başarılar</h4>
+                        <div id="achievementsContainer" class="mb-4">
+                            <!-- Başarılar burada listelenecek -->
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button id="playAgainBtn" class="btn btn-primary"><i class="fas fa-redo me-2"></i> Tekrar Oyna</button>
+                            <button id="showAnswersBtn" class="btn btn-secondary"><i class="fas fa-list me-2"></i> Cevapları Göster</button>
+                            <button id="shareResultBtn" class="btn btn-success"><i class="fas fa-share-alt me-2"></i> Sonucu Paylaş</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- How to Play Modal -->
+<div class="modal fade" id="howToPlayModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nasıl Oynanır?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><i class="fas fa-info-circle text-primary me-2"></i> Bu oyun, Türk tarihine ilişkin önemli kitapları ve yazarlarını öğrenmenize yardımcı olacak bir eğitim aracıdır.</p>
+
+                <h5 class="mt-3"><i class="fas fa-gamepad text-primary me-2"></i> Oyun Kuralları:</h5>
+                <ol>
+                    <li>Oyun iki bölümden oluşur: Çoktan seçmeli sorular ve yazma alıştırmaları.</li>
+                    <li>İlk bölümde size kitap-yazar eşleştirmeleri ile ilgili çoktan seçmeli sorular sorulacaktır.</li>
+                    <li>Her doğru cevap için 10 puan kazanırsınız.</li>
+                    <li>Seri halinde doğru cevaplar verirseniz, bonus puanlar kazanırsınız!</li>
+                    <li>İkinci bölümde size verilen kitap veya yazarları yazmanız istenecektir.</li>
+                    <li>Yazma alıştırmalarında her doğru cevap için 10 puan kazanırsınız.</li>
+                    <li>Her soruyu belirli bir süre içinde yanıtlamanız gerekir.</li>
+                    <li>Oyun moduna göre süre ve puanlama sistemi değişir.</li>
+                    <li>İpuçları kullanabilirsiniz, ancak her ipucu puanınızı azaltır.</li>
+                    <li>Oyun sonunda toplam puanınıza göre bir değerlendirme alacaksınız.</li>
+                </ol>
+
+                <h5 class="mt-3"><i class="fas fa-medal text-warning me-2"></i> Oyun Modları:</h5>
+                <ul>
+                    <li><strong>Standart:</strong> Normal oyun modu, her soru için sabit süre.</li>
+                    <li><strong>Zamana Karşı:</strong> Her sorudan sonra süreniz azalır, hızlı olmalısınız!</li>
+                    <li><strong>Meydan Okuma:</strong> 3 yanlış cevap hakkınız var, dikkatli olun!</li>
+                </ul>
+
+                <p class="mt-3"><i class="fas fa-lightbulb text-warning me-2"></i> İpucu: Kitap ve yazar isimlerinin yazımına dikkat edin!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Anladım</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Show Answers Modal -->
+<div class="modal fade" id="answersModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Kitap-Yazar Listesi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Yazar</th>
+                                <th>Eser</th>
+                            </tr>
+                        </thead>
+                        <tbody id="answersTableBody">
+                            <!-- Answers will be generated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Leaderboard Modal -->
+<div class="modal fade" id="leaderboardModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Lider Tablosu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="btn-group w-100 mb-3" role="group">
+                    <button type="button" class="btn btn-outline-primary active leaderboard-filter" data-filter="all">Tümü</button>
+                    <button type="button" class="btn btn-outline-success leaderboard-filter" data-filter="easy">Kolay</button>
+                    <button type="button" class="btn btn-outline-warning leaderboard-filter" data-filter="medium">Orta</button>
+                    <button type="button" class="btn btn-outline-danger leaderboard-filter" data-filter="hard">Zor</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>İsim</th>
+                                <th>Puan</th>
+                                <th>Mod</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboardTableBody">
+                            <!-- Leaderboard entries will be generated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Special Feedback -->
+<div id="specialFeedback" class="special-feedback"></div>
+
+<!-- Notification -->
+<div class="notification" id="notification">
+    <div class="notification-icon">
+        <i class="fas fa-bell"></i>
+    </div>
+    <div class="notification-text" id="notificationText">
+        Bildirim metni
+    </div>
+</div>
+
+<!-- Achievement Banner -->
+<div class="achievement-banner" id="achievementBanner">
+    <div class="achievement-banner-icon">
+        <i class="fas fa-trophy"></i>
+    </div>
+    <div class="achievement-banner-text">
+        <h4>Başarı Kazanıldı!</h4>
+        <p id="achievementBannerText">Başarı açıklaması</p>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Game data
+const booksAuthors = [
+    { author: "René Grousset", book: "Bozkır İmparatorluğu" },
+    { author: "Jean-Paul Roux", book: "Türklerin Tarihi" },
+    { author: "Denis Sinor", book: "Erken İç Asya Tarihi" },
+    { author: "Peter Golden", book: "Türk Halkları Tarihine Giriş" },
+    { author: "Akdes Nimet Kurat", book: "IV-XVIII. Yüzyıllarda Karadeniz Kuzeyinde Türk Kavimleri ve Devletleri" },
+    { author: "Ata Melik Cüveyni", book: "Tarih-i Cihangüşâ" },
+    { author: "Vasili Radlof", book: "Erste Lieferung" },
+    { author: "Necib Asım", book: "Orhun Abideleri" },
+    { author: "Ayşe Onat, Sema Orsoy ve Konuralp Ercilasun", book: "Çin Kaynaklarında Türkler: Han Hanedanlığı Tarihi" },
+    { author: "Ayşe Onat", book: "Çin Kaynaklarında Türkler: Han Hanedanı Tarihinde Batı Bölgeleri" },
+    { author: "İsenbike Togan, Gülnar Kara ve Cahide Baysal", book: "Çin Kaynakları'nda Türkler: Eski T'ang Tarihi (Chiu T'ang Shu) 194A: Türkler Bölümü" },
+    { author: "Özkan İZGİ", book: "Çin Elçisi Wang Yen-te'nin Uygur Seyahatnamesi" },
+    { author: "Tamim İbn Bahr", book: "Seyahatnamesi" },
+    { author: "Yusuf Has Hacib", book: "Kutadgu Bilig" },
+    { author: "Kaşgarlı Mahmud", book: "Divânu Lügati't-Türk" },
+    { author: "İmam-ı Ebü'l-Fütuh Abdülgafur", book: "Tarih-i Kaşgar" },
+    { author: "Ahmet Yesevi", book: "Divan-ı Hikmet" },
+    { author: "Edip Ahmet Yükneki", book: "Atabet'ül Hakayık" },
+    { author: "Wilhelm von Rubruck", book: "Moğolların Büyük Hanına Seyahat" },
+    { author: "Marco Polo", book: "Doğu ve Batı Kaynaklarında Çin Seyahati" },
+    { author: "İbn Battuta", book: "İbn Battuta Seyahatnamesi" },
+    { author: "Reşidü'd-din Fazlullâh", book: "Câmi'u't-tevârîh" },
+    { author: "Ötemiş Hacı", book: "Tarih-i Dost Sultan" },
+    { author: "Akdes Nimet Kurat", book: "Topkapı Sarayı Müzesi Arşivindeki Altın Ordu, Kırım ve Türkistan Hanlıklarına Ait Yarlıklar ve Bitikler" },
+    { author: "Ruy Gonzales de Claviyo", book: "Anadolu, Orta Asya ve Timur" },
+    { author: "Anthony Jenkinson", book: "Seyahatnamesi" },
+    { author: "Gülbeden Begüm", book: "Hümayunnâme" },
+    { author: "Cihangir", book: "Tüzük-i Jihangir" },
+    { author: "Zahirüddin Muhammed Babür", book: "Vekâyi veya Bâbürnâme" },
+    { author: "Muhammed Salih", book: "Şeybani-name" },
+    { author: "Hasan Rumlu", book: "Ahsenü't Tevarih" },
+    { author: "Arminus Vambery", book: "Bir Sahte Dervişin Asya-yı Vusta'ya Seyahati" },
+    { author: "Ebulgazi Bahadır Han", book: "Şecere-i Türk" },
+    { author: "V. V. Barthold", book: "Moğol İstilasına Kadar Türkistan" },
+    { author: "V. V. Barthold", book: "Ali Şir Nevai ve Uluğ Bek monografileri" },
+    { author: "V. V. Barthold", book: "Orta Asya Türk Tarihi Hakkında Dersler" },
+    { author: "V.V Barthold", book: "İslam Medeniyeti Tarihi" },
+    { author: "V.V Barthold", book: "Rusya ve Avrupa'da Oryantalizm" },
+    { author: "V.V Barthold", book: "Semireçye Tarihi" },
+    { author: "V.V Barthold", book: "Türkmen Halkının Tarihi" },
+    { author: "V.V Barthold", book: "Türkistan'ın Kültür Hayatının Tarihi" },
+    { author: "A. Zeki Velidi Togan", book: "Umumi Türk Tarihine Giriş" }
+];
+
+// Kitaplar için ipuçları (bazı örnekler)
+const bookHints = {
+    "Bozkır İmparatorluğu": "Bu kitap, bozkır kültürü ve göçebe imparatorlukları hakkında detaylı bilgiler içerir.",
+    "Türklerin Tarihi": "Türk tarihinin bütüncül bir anlatımını içeren kapsamlı bir eserdir.",
+    "Kutadgu Bilig": "11. yüzyılda yazılmış, Türk-İslam edebiyatının ilk siyasetnamelerinden biridir.",
+    "Divânu Lügati't-Türk": "Türkçenin bilinen ilk sözlüğü ve ansiklopedik eseridir.",
+    "İbn Battuta Seyahatnamesi": "Ünlü Arap seyyahın 14. yüzyılda yaptığı seyahatleri anlatan eserdir."
+};
+
+// Yazarlar için ipuçları (bazı örnekler)
+const authorHints = {
+    "René Grousset": "20. yüzyılda yaşamış Fransız bir tarihçi ve sanat tarihçisidir.",
+    "Jean-Paul Roux": "Fransız bir türkolog ve dinler tarihçisidir.",
+    "Yusuf Has Hacib": "11. yüzyılda yaşamış, Karahanlı döneminin önemli bir düşünürüdür.",
+    "Kaşgarlı Mahmud": "11. yüzyılda yaşamış Türk dil bilimci ve sözlükçüdür.",
+    "İbn Battuta": "14. yüzyılda yaşamış ünlü bir Arap seyyah ve gezgindir."
+};
+
+// Başarı sistemi
+const achievements = [
+    { id: "first_correct", name: "İlk Başarı", description: "İlk soruyu doğru cevapla", icon: "fas fa-award", unlocked: false, condition: (stats) => stats.correctAnswers >= 1 },
+    { id: "perfect_score", name: "Mükemmel Skor", description: "Tüm soruları doğru cevapla", icon: "fas fa-crown", unlocked: false, condition: (stats) => stats.wrongAnswers === 0 && stats.correctAnswers >= (stats.totalQuestions + stats.writingQuestions) },
+    { id: "speed_demon", name: "Hız Canavarı", description: "5 soruyu 20 saniyeden kısa sürede cevapla", icon: "fas fa-bolt", unlocked: false, condition: (stats) => stats.fastAnswers >= 5 },
+    { id: "streak_master", name: "Seri Ustası", description: "5 veya daha fazla doğru cevap serisi yap", icon: "fas fa-fire", unlocked: false, condition: (stats) => stats.bestStreak >= 5 },
+    { id: "scholar", name: "Bilgin", description: "100 veya daha fazla puan topla", icon: "fas fa-graduation-cap", unlocked: false, condition: (stats) => stats.score >= 100 },
+    { id: "comeback_kid", name: "Geri Dönüşçü", description: "3 yanlıştan sonra 3 doğru cevap ver", icon: "fas fa-undo", unlocked: false, condition: (stats) => stats.comeback },
+    { id: "no_hint", name: "İpuçsuz Kahraman", description: "Hiç ipucu kullanmadan oyunu bitir", icon: "fas fa-lightbulb", unlocked: false, condition: (stats) => !stats.usedHint && stats.gameCompleted }
+];
+
+// Oyun değişkenleri
+let currentPlayer = "";
+let isRuya = false;
+let difficulty = "easy"; // easy, medium, hard
+let gameMode = "standard"; // standard, time, challenge
+let wrongCount = 0;
+let score = 0;
+let currentQuestionIndex = 0;
+let currentWritingIndex = 0;
+let correctAnswers = 0;
+let wrongAnswers = 0;
+let timer;
+let timeLeft = 30;
+let writingTimeLeft = 45;
+let selectedQuestions = [];
+let writingQuestions = [];
+let streakCount = 0;
+let bestStreak = 0;
+let comboCount = 0;
+let usedHintInCurrentQuestion = false;
+let usedHint = false;
+let eliminateUsed = false;
+let hintUsed = false;
+let writingHintUsed = false;
+let fastAnswers = 0;
+let comeback = false;
+let consecutive3Wrong = false;
+let consecutive3Correct = false;
+let leaderboard = loadLeaderboard();
+let gameStats = {
+    correctAnswers: 0,
+    wrongAnswers: 0,
+    score: 0,
+    bestStreak: 0,
+    usedHint: false,
+    fastAnswers: 0,
+    comeback: false,
+    totalQuestions: 0,
+    writingQuestions: 0,
+    gameCompleted: false
+};
+
+// DOM Elements
+const welcomeScreen = document.getElementById('welcomeScreen');
+const gameScreen = document.getElementById('gameScreen');
+const writingScreen = document.getElementById('writingScreen');
+const resultScreen = document.getElementById('resultScreen');
+const startBtn = document.getElementById('startBtn');
+const howToPlayBtn = document.getElementById('howToPlayBtn');
+const leaderboardBtn = document.getElementById('leaderboardBtn');
+const nextBtn = document.getElementById('nextBtn');
+const playerNameInput = document.getElementById('playerName');
+const playerNameDisplay = document.getElementById('playerNameDisplay');
+const playerNameDisplay2 = document.getElementById('playerNameDisplay2');
+const scoreDisplay = document.getElementById('scoreDisplay');
+const scoreDisplay2 = document.getElementById('scoreDisplay2');
+const currentWritingNumber = document.getElementById('currentWritingNumber');
+const totalWriting = document.getElementById('totalWriting');
+const writingQuestion = document.getElementById('writingQuestion');
+const writingAnswer = document.getElementById('writingAnswer');
+const writingFeedback = document.getElementById('writingFeedback');
+const submitWritingBtn = document.getElementById('submitWritingBtn');
+const nextWritingBtn = document.getElementById('nextWritingBtn');
+const finalScore = document.getElementById('finalScore');
+const totalScore = document.getElementById('totalScore');
+const correctAnswersDisplay = document.getElementById('correctAnswers');
+const wrongAnswersDisplay = document.getElementById('wrongAnswers');
+const bestStreakDisplay = document.getElementById('bestStreak');
+const resultMessage = document.getElementById('resultMessage');
+const resultIcon = document.getElementById('resultIcon');
+const playAgainBtn = document.getElementById('playAgainBtn');
+const showAnswersBtn = document.getElementById('showAnswersBtn');
+const shareResultBtn = document.getElementById('shareResultBtn');
+const answersTableBody = document.getElementById('answersTableBody');
+const specialFeedback = document.getElementById('specialFeedback');
+const notification = document.getElementById('notification');
+const notificationText = document.getElementById('notificationText');
+const achievementBanner = document.getElementById('achievementBanner');
+const achievementBannerText = document.getElementById('achievementBannerText');
+const achievementsContainer = document.getElementById('achievementsContainer');
+const eliminateBtn = document.getElementById('eliminateBtn');
+const hintBtn = document.getElementById('hintBtn');
+const hintText = document.getElementById('hintText');
+const writingHintBtn = document.getElementById('writingHintBtn');
+const writingHintText = document.getElementById('writingHintText');
+const streakIndicator = document.getElementById('streakIndicator');
+const streakCount_display = document.getElementById('streakCount');
+const streakIndicator2 = document.getElementById('streakIndicator2');
+const streakCount_display2 = document.getElementById('streakCount2');
+const streakProgressBar = document.getElementById('streakProgressBar');
+const streakProgressBar2 = document.getElementById('streakProgressBar2');
+const comboMeter = document.getElementById('comboMeter');
+const comboCount_display = document.getElementById('comboCount');
+const comboProgress = document.getElementById('comboProgress');
+const difficultyBtns = document.querySelectorAll('.difficulty-btn');
+const gameModeBtns = document.querySelectorAll('.game-mode-btn');
+const leaderboardTableBody = document.getElementById('leaderboardTableBody');
+const leaderboardFilterBtns = document.querySelectorAll('.leaderboard-filter');
+const particles = document.getElementById('particles');
+
+// Bootstrap Modal
+const howToPlayModal = new bootstrap.Modal(document.getElementById('howToPlayModal'));
+const answersModal = new bootstrap.Modal(document.getElementById('answersModal'));
+const leaderboardModal = new bootstrap.Modal(document.getElementById('leaderboardModal'));
+
+// Zorluk seviyesi ayarları
+const difficultySettings = {
+    easy: {
+        questionTime: 30,
+        writingTime: 45,
+        questionCount: 10,
+        writingCount: 5,
+        hintPenalty: 2,
+        eliminatePenalty: 1
+    },
+    medium: {
+        questionTime: 20,
+        writingTime: 30,
+        questionCount: 15,
+        writingCount: 7,
+        hintPenalty: 3,
+        eliminatePenalty: 2
+    },
+    hard: {
+        questionTime: 15,
+        writingTime: 20,
+        questionCount: 20,
+        writingCount: 10,
+        hintPenalty: 5,
+        eliminatePenalty: 3
+    }
+};
+
+// Oyun modu ayarları
+const gameModeSettings = {
+    standard: {
+        streakBonus: true,
+        timeDecrease: false,
+        lives: Infinity
+    },
+    time: {
+        streakBonus: true,
+        timeDecrease: true,
+        timeBonusForCorrect: 5,
+        timeDecreaseRate: 0.9
+    },
+    challenge: {
+        streakBonus: true,
+        timeDecrease: false,
+        lives: 3
+    }
+};
+
+// Event Listeners
+startBtn.addEventListener('click', startGame);
+howToPlayBtn.addEventListener('click', () => howToPlayModal.show());
+leaderboardBtn.addEventListener('click', () => {
+    displayLeaderboard();
+    leaderboardModal.show();
+});
+nextBtn.addEventListener('click', nextQuestion);
+submitWritingBtn.addEventListener('click', checkWritingAnswer);
+nextWritingBtn.addEventListener('click', nextWritingQuestion);
+playAgainBtn.addEventListener('click', () => location.reload());
+showAnswersBtn.addEventListener('click', showAnswers);
+shareResultBtn.addEventListener('click', shareResult);
+eliminateBtn.addEventListener('click', eliminateOption);
+hintBtn.addEventListener('click', showHint);
+writingHintBtn.addEventListener('click', showWritingHint);
+
+// Zorluk seçimi için event listener
+difficultyBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        difficultyBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        difficulty = this.getAttribute('data-difficulty');
+    });
+});
+
+// Oyun modu seçimi için event listener
+gameModeBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        gameModeBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        gameMode = this.getAttribute('data-mode');
+    });
+});
+
+// Lider tablosu filtreleme
+leaderboardFilterBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        leaderboardFilterBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        displayLeaderboard(this.getAttribute('data-filter'));
+    });
+});
+
+// Arkaplan parçacıkları oluşturma
+function createParticles() {
+    particles.innerHTML = '';
+    const colors = ['#e74c3c', '#f39c12', '#2ecc71', '#3498db', '#9b59b6'];
+    
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        const size = Math.random() * 10 + 5;
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const duration = Math.random() * 20 + 10;
+        const delay = Math.random() * 5;
+        
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = posX + 'vw';
+        particle.style.top = posY + 'vh';
+        particle.style.backgroundColor = color;
+        particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+        
+        particles.appendChild(particle);
+    }
+}
+
+// Bildirim gösterme
+function showNotification(message, type = 'info') {
+    let iconClass = 'fa-info-circle';
+    let bgColor = '#2c3e50';
+    
+    if (type === 'success') {
+        iconClass = 'fa-check-circle';
+        bgColor = '#2ecc71';
+    } else if (type === 'warning') {
+        iconClass = 'fa-exclamation-triangle';
+        bgColor = '#f39c12';
+    } else if (type === 'error') {
+        iconClass = 'fa-times-circle';
+        bgColor = '#e74c3c';
+    }
+    
+    notification.style.backgroundColor = bgColor;
+    notification.querySelector('.notification-icon i').className = `fas ${iconClass}`;
+    notificationText.textContent = message;
+    notification.classList.add('show');
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 3000);
+}
+
+// Başarı kazanma bildirimi
+function showAchievementBanner(achievement) {
+    achievementBanner.querySelector('.achievement-banner-icon i').className = achievement.icon;
+    achievementBannerText.textContent = `"${achievement.name}" - ${achievement.description}`;
+    achievementBanner.classList.add('show');
+    
+    setTimeout(() => {
+        achievementBanner.classList.remove('show');
+    }, 5000);
+}
+
+// Bonus puan animasyonu
+function showBonusPoints(element, points) {
+    const bonusElement = document.createElement('div');
+    bonusElement.classList.add('bonus-points');
+    bonusElement.textContent = `+${points}`;
+    
+    // Elementin pozisyonunu al ve ekle
+    const rect = element.getBoundingClientRect();
+    bonusElement.style.top = `${rect.top}px`;
+    bonusElement.style.left = `${rect.left + rect.width / 2}px`;
+    
+    document.body.appendChild(bonusElement);
+    
+    // Animasyon tamamlandığında elementi kaldır
+    setTimeout(() => {
+        document.body.removeChild(bonusElement);
+    }, 1500);
+}
+
+// Lider tablosunu yükleme
+function loadLeaderboard() {
+    const leaderboardData = localStorage.getItem('turkishHistoryGameLeaderboard');
+    return leaderboardData ? JSON.parse(leaderboardData) : [];
+}
+
+// Lider tablosunu kaydetme
+function saveLeaderboard(leaderboard) {
+    localStorage.setItem('turkishHistoryGameLeaderboard', JSON.stringify(leaderboard));
+}
+
+// Lider tablosunu gösterme
+function displayLeaderboard(filter = 'all') {
+    leaderboardTableBody.innerHTML = '';
+    
+    let filteredLeaderboard = leaderboard;
+    if (filter !== 'all') {
+        filteredLeaderboard = leaderboard.filter(entry => entry.difficulty === filter);
+    }
+    
+    // Skora göre sırala
+    filteredLeaderboard.sort((a, b) => b.score - a.score);
+    
+    filteredLeaderboard.forEach((entry, index) => {
+        const row = document.createElement('tr');
+        
+        // Şu anki oyuncuyu vurgula
+        if (entry.name === currentPlayer && entry.date === new Date().toLocaleDateString()) {
+            row.classList.add('highlight');
+        }
+        
+        const positionCell = document.createElement('td');
+        positionCell.textContent = index + 1;
+        
+        const nameCell = document.createElement('td');
+        nameCell.textContent = entry.name;
+        
+        const scoreCell = document.createElement('td');
+        scoreCell.textContent = entry.score;
+        
+        const modeCell = document.createElement('td');
+        let modeIcon = '';
+        if (entry.difficulty === 'easy') {
+            modeIcon = '<i class="fas fa-smile text-success"></i> ';
+        } else if (entry.difficulty === 'medium') {
+            modeIcon = '<i class="fas fa-meh text-warning"></i> ';
+        } else if (entry.difficulty === 'hard') {
+            modeIcon = '<i class="fas fa-frown text-danger"></i> ';
+        }
+        
+        let gameModeIcon = '';
+        if (entry.gameMode === 'standard') {
+            gameModeIcon = '<i class="fas fa-gamepad"></i>';
+        } else if (entry.gameMode === 'time') {
+            gameModeIcon = '<i class="fas fa-clock"></i>';
+        } else if (entry.gameMode === 'challenge') {
+            gameModeIcon = '<i class="fas fa-skull"></i>';
+        }
+        
+        modeCell.innerHTML = `${modeIcon}${gameModeIcon}`;
+        
+        row.appendChild(positionCell);
+        row.appendChild(nameCell);
+        row.appendChild(scoreCell);
+        row.appendChild(modeCell);
+        
+        leaderboardTableBody.appendChild(row);
+    });
+    
+    // Eğer hiç veri yoksa
+    if (filteredLeaderboard.length === 0) {
+        const row = document.createElement('tr');
+        const cell = document.createElement('td');
+        cell.colSpan = 4;
+        cell.textContent = 'Henüz bir skor kaydedilmemiş.';
+        cell.style.textAlign = 'center';
+        cell.style.padding = '20px';
+        row.appendChild(cell);
+        leaderboardTableBody.appendChild(row);
+    }
+}
+
+// Skoru lider tablosuna ekleme
+function addToLeaderboard(name, score, difficulty, gameMode) {
+    const entry = {
+        name,
+        score,
+        difficulty,
+        gameMode,
+        date: new Date().toLocaleDateString()
+    };
+    
+    leaderboard.push(entry);
+    
+    // En yüksek 50 skoru tut
+    leaderboard.sort((a, b) => b.score - a.score);
+    if (leaderboard.length > 50) {
+        leaderboard.pop();
+    }
+    
+    saveLeaderboard(leaderboard);
+}
+
+// Başarıları kontrol etme
+function checkAchievements() {
+    let newAchievements = [];
+    
+    achievements.forEach(achievement => {
+        if (!achievement.unlocked && achievement.condition(gameStats)) {
+            achievement.unlocked = true;
+            newAchievements.push(achievement);
+        }
+    });
+    
+    // Yeni başarıları göster
+    if (newAchievements.length > 0) {
+        setTimeout(() => {
+            newAchievements.forEach(achievement => {
+                showAchievementBanner(achievement);
+            });
+        }, 1000);
+    }
+    
+    // Başarıları sonuç ekranında listele
+    displayAchievements();
+}
+
+// Başarıları sonuç ekranında gösterme
+function displayAchievements() {
+    achievementsContainer.innerHTML = '';
+    
+    achievements.forEach(achievement => {
+        const achievementEl = document.createElement('div');
+        achievementEl.classList.add('achievement');
+        
+        if (!achievement.unlocked) {
+            achievementEl.classList.add('achievement-locked');
+        }
+        
+        achievementEl.innerHTML = `
+            <div class="achievement-icon">
+                <i class="${achievement.icon}"></i>
+            </div>
+            <div class="achievement-text">
+                <p class="achievement-name">${achievement.name}</p>
+                <p class="achievement-desc">${achievement.description}</p>
+            </div>
+        `;
+        
+        achievementsContainer.appendChild(achievementEl);
+    });
+}
+
+// Sonucu paylaşma
+function shareResult() {
+    const text = `Türk Tarihi Kitapları Oyunu'nda ${score} puan kazandım! ${currentPlayer} olarak ${difficulty} zorlukta ${gameMode} modunda oynadım. Sen de oyna!`;
+    
+    if (navigator.share) {
+        navigator.share({
+            title: 'Türk Tarihi Kitapları Oyunu',
+            text: text,
+            url: window.location.href
+        })
+        .catch(error => {
+            showNotification('Paylaşım sırasında bir hata oluştu.', 'error');
+            console.error('Paylaşım hatası:', error);
+        });
+    } else {
+        // Web Share API yoksa kopyala
+        navigator.clipboard.writeText(text)
+            .then(() => {
+                showNotification('Sonuç panoya kopyalandı!', 'success');
+            })
+            .catch(err => {
+                showNotification('Kopyalama başarısız oldu.', 'error');
+                console.error('Clipboard error:', err);
+            });
+    }
+}
+
+// Function to start the game
+function startGame() {
+    currentPlayer = playerNameInput.value.trim() || "Oyuncu";
+    isRuya = currentPlayer.toLowerCase() === "rüya" || currentPlayer.toLowerCase() === "ruya";
+
+    if (currentPlayer === "") {
+        playerNameInput.classList.add('is-invalid');
+        return;
+    }
+
+    playerNameDisplay.textContent = currentPlayer;
+    playerNameDisplay2.textContent = currentPlayer;
+
+    // Seçilen zorluk seviyesi ayarlarını yükle
+    const settings = difficultySettings[difficulty];
+    timeLeft = settings.questionTime;
+    writingTimeLeft = settings.writingTime;
+
+    // Select random questions for multiple choice
+    selectedQuestions = selectRandomQuestions(settings.questionCount);
+    totalQuestions.textContent = selectedQuestions.length;
+
+    // Select random questions for writing
+    writingQuestions = selectRandomQuestions(settings.writingCount, selectedQuestions);
+    totalWriting.textContent = writingQuestions.length;
+
+    // Oyun istatistiklerini ayarla
+    gameStats.totalQuestions = settings.questionCount;
+    gameStats.writingQuestions = settings.writingCount;
+
+    welcomeScreen.style.display = 'none';
+    gameScreen.style.display = 'block';
+
+    loadQuestion();
+    startTimer();
+    createParticles();
+}
+
+// Function to select random questions
+function selectRandomQuestions(count, excludeQuestions = []) {
+    let available = [...booksAuthors];
+
+    // Remove questions that are excluded
+    if (excludeQuestions.length > 0) {
+        available = available.filter(item => !excludeQuestions.includes(item));
+    }
+
+    // Shuffle array
+    for (let i = available.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [available[i], available[j]] = [available[j], available[i]];
+    }
+
+    return available.slice(0, count);
+}
+
+// Function to load a question
+function loadQuestion() {
+    const currentQuestion = selectedQuestions[currentQuestionIndex];
+    currentQuestionNumber.textContent = currentQuestionIndex + 1;
+
+    // Zorluk seviyesine göre ipuçlarını sıfırla
+    eliminateUsed = false;
+    hintUsed = false;
+    usedHintInCurrentQuestion = false;
+    
+    // İpucu butonlarını aktifleştir
+    eliminateBtn.classList.remove('disabled');
+    hintBtn.classList.remove('disabled');
+    hintText.style.display = 'none';
+
+    // Randomly decide if we ask for the author or the book
+    const askForAuthor = Math.random() < 0.5;
+
+    if (askForAuthor) {
+        questionText.innerHTML = `<i class="fas fa-book book-icon"></i> "${currentQuestion.book}" kitabının yazarı kimdir?`;
+    } else {
+        questionText.innerHTML = `<i class="fas fa-user book-icon"></i> ${currentQuestion.author}'in yazdığı kitap hangisidir?`;
+    }
+
+    // Generate options
+    generateOptions(currentQuestion, askForAuthor);
+
+    // Reset UI states
+    feedback.style.display = 'none';
+    nextBtn.style.display = 'none';
+    
+    // Zamana karşı modda süre azaltma
+    if (gameMode === 'time' && currentQuestionIndex > 0) {
+        timeLeft = Math.max(5, Math.floor(timeLeft * gameModeSettings.time.timeDecreaseRate));
+    } else {
+        timeLeft = difficultySettings[difficulty].questionTime;
+    }
+    
+    timerDisplay.textContent = timeLeft;
+    timerBar.style.width = '100%';
+    timerBar.classList.remove('animate-progress');
+    void timerBar.offsetWidth; // Trigger reflow
+    timerBar.classList.add('animate-progress');
+    
+    // Streaks görünürlüğü
+    updateStreakDisplay();
+}
+
+// Function to generate options
+function generateOptions(currentQuestion, askForAuthor) {
+    optionsContainer.innerHTML = '';
+
+    const correctAnswer = askForAuthor ? currentQuestion.author : currentQuestion.book;
+    let options = [correctAnswer];
+
+    // Generate 3 random incorrect options
+    while (options.length < 4) {
+        const randomQuestionIndex = Math.floor(Math.random() * booksAuthors.length);
+        const randomOption = askForAuthor ? booksAuthors[randomQuestionIndex].author : booksAuthors[randomQuestionIndex].book;
+
+        // Make sure we don't add duplicates
+        if (!options.includes(randomOption)) {
+            options.push(randomOption);
+        }
+    }
+
+    // Shuffle options
+    for (let i = options.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [options[i], options[j]] = [options[j], options[i]];
+    }
+
+    // Add options to the container
+    options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.classList.add('option-btn');
+        button.textContent = option;
+        button.setAttribute('data-index', index);
+        button.setAttribute('data-correct', option === correctAnswer);
+
+        button.addEventListener('click', selectOption);
+
+        optionsContainer.appendChild(button);
+    });
+}
+
+// Function to handle option selection
+function selectOption(event) {
+    clearInterval(timer);
+
+    const selectedButton = event.currentTarget;
+    const isCorrect = selectedButton.getAttribute('data-correct') === 'true';
+
+    // Meydan okuma modunda can kontrolü
+    if (gameMode === 'challenge' && !isCorrect) {
+        wrongCount++;
+        if (wrongCount >= gameModeSettings.challenge.lives) {
+            showResults();
+            return;
+        }
+    }
+
+    // Mark all options
+    const options = optionsContainer.querySelectorAll('.option-btn');
+    options.forEach(option => {
+        option.disabled = true;
+
+        if (option.getAttribute('data-correct') === 'true') {
+            option.classList.add('correct');
+            option.innerHTML = `<i class="fas fa-check-circle me-2"></i> ${option.textContent}`;
+        } else if (option === selectedButton && !isCorrect) {
+            option.classList.add('incorrect');
+            option.innerHTML = `<i class="fas fa-times-circle me-2"></i> ${option.textContent}`;
+        }
+    });
+
+    // Seri hesaplaması ve bonus puan
+    if (isCorrect) {
+        streakCount++;
+        comboCount++;
+        
+        // En yüksek seriyi güncelle
+        if (streakCount > bestStreak) {
+            bestStreak = streakCount;
+            gameStats.bestStreak = bestStreak;
+        }
+        
+        // Hızlı cevap kontrolü
+        const timeSpent = difficultySettings[difficulty].questionTime - timeLeft;
+        if (timeSpent < 10) {
+            fastAnswers++;
+            gameStats.fastAnswers = fastAnswers;
+        }
+        
+        // Bonus hesaplama
+        let baseScore = 10;
+        let streakBonus = 0;
+        let timeBonus = 0;
+        
+        // Seri bonusu
+        if (gameModeSettings[gameMode].streakBonus && streakCount > 1) {
+            streakBonus = Math.min(streakCount, 5);
+        }
+        
+        // Zaman bonusu
+        if (timeLeft > difficultySettings[difficulty].questionTime / 2) {
+            timeBonus = Math.floor(timeLeft / 5);
+        }
+        
+        // İpucu cezası
+        let finalScore = baseScore;
+        if (usedHintInCurrentQuestion) {
+            const hintPenalty = eliminateUsed ? difficultySettings[difficulty].eliminatePenalty : 0;
+            const textHintPenalty = hintUsed ? difficultySettings[difficulty].hintPenalty : 0;
+            finalScore = Math.max(1, baseScore - hintPenalty - textHintPenalty);
+        } else {
+            finalScore = baseScore + streakBonus + timeBonus;
+        }
+        
+        score += finalScore;
+        scoreDisplay.textContent = score;
+        
+        // Bonus gösterimi
+        if (streakBonus > 0 || timeBonus > 0) {
+            let bonusText = '';
+            if (streakBonus > 0) {
+                bonusText += `+${streakBonus} seri`;
+            }
+            if (timeBonus > 0) {
+                if (bonusText) bonusText += ', ';
+                bonusText += `+${timeBonus} hız`;
+            }
+            
+            feedback.innerHTML = `<i class="fas fa-check-circle me-2"></i> Doğru cevap! <span class="time-bonus">(${bonusText})</span>`;
+        } else {
+            feedback.innerHTML = '<i class="fas fa-check-circle me-2"></i> Doğru cevap!';
+        }
+        
+        feedback.className = 'feedback feedback-success';
+        correctAnswers++;
+        gameStats.correctAnswers = correctAnswers;
+        selectedButton.classList.add('pulse');
+        
+        // Zamana karşı modunda süre bonusu
+        if (gameMode === 'time') {
+            timeLeft += gameModeSettings.time.timeBonusForCorrect;
+            timerDisplay.textContent = timeLeft;
+        }
+        
+        // Geri dönüş başarısı için kontrol
+        if (consecutive3Wrong && !consecutive3Correct) {
+            consecutive3Correct = true;
+            gameStats.comeback = true;
+            comeback = true;
+        }
+    } else {
+        feedback.innerHTML = '<i class="fas fa-times-circle me-2"></i> Yanlış cevap!';
+        feedback.className = 'feedback feedback-danger';
+        wrongAnswers++;
+        gameStats.wrongAnswers = wrongAnswers;
+        selectedButton.classList.add('shake');
+        streakCount = 0;
+        comboCount = 0;
+        
+        // Geri dönüş başarısı için kontrol
+        if (wrongAnswers >= 3 && !consecutive3Wrong) {
+            consecutive3Wrong = true;
+        }
+
+        if (isRuya) {
+            wrongCount++;
+            if (wrongCount % 3 === 0) {
+                showSpecialFeedback();
+            }
+        }
+    }
+
+    feedback.style.display = 'block';
+    nextBtn.style.display = 'block';
+    
+    // Combo metresi güncellemesi
+    updateComboMeter();
+    
+    // Streak gösterimi güncellemesi
+    updateStreakDisplay();
+
+    // If it's the last question, the next button should move to writing section
+    if (currentQuestionIndex === selectedQuestions.length - 1) {
+        nextBtn.innerHTML = '<i class="fas fa-pencil-alt me-2"></i> Yazma Bölümüne Geç';
+    }
+    
+    // Başarıları kontrol et
+    checkAchievements();
+}
+
+// Kombo metresi güncellemesi
+function updateComboMeter() {
+    if (comboCount > 1) {
+        comboMeter.style.display = 'block';
+        comboCount_display.textContent = comboCount;
+        
+        // Progressive progress bar
+        const progressWidth = Math.min(100, (comboCount / 10) * 100);
+        comboProgress.style.width = `${progressWidth}%`;
+        
+        // Renk değişimi
+        if (comboCount >= 8) {
+            comboProgress.style.backgroundColor = '#e74c3c';
+        } else if (comboCount >= 5) {
+            comboProgress.style.backgroundColor = '#f39c12';
+        } else {
+            comboProgress.style.backgroundColor = '#2ecc71';
+        }
+    } else {
+        comboMeter.style.display = 'none';
+    }
+}
+
+// Streak gösterimi güncellemesi
+function updateStreakDisplay() {
+    if (streakCount > 1) {
+        streakIndicator.style.display = 'inline-flex';
+        streakCount_display.textContent = streakCount;
+        streakIndicator2.style.display = 'inline-flex';
+        streakCount_display2.textContent = streakCount;
+        
+        // Streak ilerlemesi
+        const progressWidth = Math.min(100, (streakCount / 10) * 100);
+        streakProgressBar.style.width = `${progressWidth}%`;
+        streakProgressBar2.style.width = `${progressWidth}%`;
+        
+        // Streak 5'ten büyükse animasyon
+        if (streakCount >= 5 && streakCount % 5 === 0) {
+            streakIndicator.classList.add('bounce');
+            setTimeout(() => {
+                streakIndicator.classList.remove('bounce');
+            }, 1000);
+        }
+    } else {
+        streakIndicator.style.display = 'none';
+        streakIndicator2.style.display = 'none';
+        streakProgressBar.style.width = '0%';
+        streakProgressBar2.style.width = '0%';
+    }
+}
+
+// Function to move to the next question
+function nextQuestion() {
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < selectedQuestions.length) {
+        loadQuestion();
+        startTimer();
+    } else {
+        // Move to writing section
+        gameScreen.style.display = 'none';
+        writingScreen.style.display = 'block';
+        scoreDisplay2.textContent = score;
+        loadWritingQuestion();
+        startWritingTimer();
+    }
+}
+
+// Bir seçeneği eleme fonksiyonu
+function eliminateOption() {
+    if (eliminateUsed || gameScreen.style.display === 'none') return;
+    
+    const options = optionsContainer.querySelectorAll('.option-btn:not([data-correct="true"])');
+    
+    // Disable one wrong option
+    if (options.length > 0) {
+        const randomIndex = Math.floor(Math.random() * options.length);
+        options[randomIndex].disabled = true;
+        options[randomIndex].style.opacity = '0.5';
+        options[randomIndex].style.textDecoration = 'line-through';
+        options[randomIndex].style.pointerEvents = 'none';
+        
+        eliminateUsed = true;
+        usedHintInCurrentQuestion = true;
+        usedHint = true;
+        gameStats.usedHint = true;
+        
+        eliminateBtn.classList.add('disabled');
+        
+        showNotification('Bir yanlış seçenek elendi!', 'warning');
+    }
+}
+
+// İpucu gösterme fonksiyonu
+function showHint() {
+    if (hintUsed || gameScreen.style.display === 'none') return;
+    
+    const currentQuestion = selectedQuestions[currentQuestionIndex];
+    const askForAuthor = questionText.innerHTML.includes('kitabının yazarı kimdir');
+    
+    let hintContent = '';
+    if (askForAuthor) {
+        if (authorHints[currentQuestion.author]) {
+            hintContent = authorHints[currentQuestion.author];
+        } else {
+            hintContent = `Bu yazar hakkında ipucu yok. Kitabı "${currentQuestion.book}" adlı eserdir.`;
+        }
+    } else {
+        if (bookHints[currentQuestion.book]) {
+            hintContent = bookHints[currentQuestion.book];
+        } else {
+            hintContent = `Bu kitap hakkında ipucu yok. Yazarı ${currentQuestion.author}'dır.`;
+        }
+    }
+    
+    hintText.textContent = hintContent;
+    hintText.style.display = 'block';
+    
+    hintUsed = true;
+    usedHintInCurrentQuestion = true;
+    usedHint = true;
+    gameStats.usedHint = true;
+    
+    hintBtn.classList.add('disabled');
+    
+    showNotification('İpucu gösterildi!', 'warning');
+}
+
+// Yazma sorusu için ipucu gösterme
+function showWritingHint() {
+    if (writingHintUsed || writingScreen.style.display === 'none') return;
+    
+    const currentQuestion = writingQuestions[currentWritingIndex];
+    const askForAuthor = writingQuestion.innerHTML.includes('kitabının yazarını yazınız');
+    
+    let hintContent = '';
+    if (askForAuthor) {
+        const authorName = currentQuestion.author;
+        hintContent = `İlk harf: "${authorName[0]}" - Toplam harf sayısı: ${authorName.length}`;
+    } else {
+        const bookName = currentQuestion.book;
+        hintContent = `İlk harf: "${bookName[0]}" - Toplam harf sayısı: ${bookName.length}`;
+    }
+    
+    writingHintText.textContent = hintContent;
+    writingHintText.style.display = 'block';
+    
+    writingHintUsed = true;
+    usedHint = true;
+    gameStats.usedHint = true;
+    
+    writingHintBtn.classList.add('disabled');
+    
+    showNotification('İpucu gösterildi!', 'warning');
+}
+
+// Function to start the timer
+function startTimer() {
+    clearInterval(timer);
+    timerDisplay.textContent = timeLeft;
+    timerBar.style.width = '100%';
+
+    timer = setInterval(() => {
+        timeLeft--;
+        timerDisplay.textContent = timeLeft;
+        timerBar.style.width = (timeLeft / difficultySettings[difficulty].questionTime * 100) + '%';
+
+        if (timeLeft <= 10) {
+            timerDisplay.classList.add('text-danger');
+            timerBar.classList.add('bg-danger');
+        } else {
+            timerDisplay.classList.remove('text-danger');
+            timerBar.classList.remove('bg-danger');
+        }
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            // Time's up, mark as incorrect
+            const options = optionsContainer.querySelectorAll('.option-btn');
+            options.forEach(option => {
+                option.disabled = true;
+                
+                if (option.getAttribute('data-correct') === 'true') {
+                    option.classList.add('correct');
+                    option.innerHTML = `<i class="fas fa-check-circle me-2"></i> ${option.textContent}`;
+                }
+            });
+            
+            feedback.innerHTML = '<i class="fas fa-clock me-2"></i> Süre doldu!';
+            feedback.className = 'feedback feedback-danger';
+            feedback.style.display = 'block';
+            nextBtn.style.display = 'block';
+            wrongAnswers++;
+            gameStats.wrongAnswers = wrongAnswers;
+            streakCount = 0;
+            comboCount = 0;
+            
+            // Streak gösterimi güncellemesi
+            updateStreakDisplay();
+            // Combo metresi güncellemesi
+            updateComboMeter();
+            
+            if (isRuya) {
+                wrongCount++;
+                if (wrongCount % 3 === 0) {
+                    showSpecialFeedback();
+                }
+            }
+            
+            // If it's the last question, the next button should move to writing section
+            if (currentQuestionIndex === selectedQuestions.length - 1) {
+                nextBtn.innerHTML = '<i class="fas fa-pencil-alt me-2"></i> Yazma Bölümüne Geç';
+            }
+        }
+    }, 1000);
+}
+
+// Function to load a writing question
+function loadWritingQuestion() {
+    const currentQuestion = writingQuestions[currentWritingIndex];
+    currentWritingNumber.textContent = currentWritingIndex + 1;
+
+    // İpucu sıfırlama
+    writingHintUsed = false;
+    writingHintBtn.classList.remove('disabled');
+    writingHintText.style.display = 'none';
+
+    // Randomly decide if we ask for the author or the book
+    const askForAuthor = Math.random() < 0.5;
+
+    if (askForAuthor) {
+        writingQuestion.innerHTML = `<i class="fas fa-book book-icon"></i> "${currentQuestion.book}" kitabının yazarını yazınız:`;
+    } else {
+        writingQuestion.innerHTML = `<i class="fas fa-user book-icon"></i> ${currentQuestion.author}'in yazdığı kitabı yazınız:`;
+    }
+
+    // Reset UI states
+    writingAnswer.value = '';
+    writingFeedback.style.display = 'none';
+    submitWritingBtn.style.display = 'block';
+    nextWritingBtn.style.display = 'none';
+    
+    // Zamana karşı modda süre azaltma
+    if (gameMode === 'time' && currentWritingIndex > 0) {
+        writingTimeLeft = Math.max(5, Math.floor(writingTimeLeft * gameModeSettings.time.timeDecreaseRate));
+    } else {
+        writingTimeLeft = difficultySettings[difficulty].writingTime;
+    }
+    
+    timerDisplay2.textContent = writingTimeLeft;
+    timerBar2.style.width = '100%';
+    timerBar2.classList.remove('animate-progress');
+    void timerBar2.offsetWidth; // Trigger reflow
+    timerBar2.classList.add('animate-progress');
+
+    // Focus on the input
+    setTimeout(() => {
+        writingAnswer.focus();
+    }, 100);
+}
+
+// Function to check writing answer
+function checkWritingAnswer() {
+    clearInterval(timer);
+
+    const currentQuestion = writingQuestions[currentWritingIndex];
+    const askForAuthor = writingQuestion.innerHTML.includes('kitabının yazarını yazınız');
+    const correctAnswer = askForAuthor ? currentQuestion.author : currentQuestion.book;
+    const userAnswer = writingAnswer.value.trim();
+
+    // Meydan okuma modunda can kontrolü
+    if (gameMode === 'challenge' && userAnswer.toLowerCase() !== correctAnswer.toLowerCase()) {
+        wrongCount++;
+        if (wrongCount >= gameModeSettings.challenge.lives) {
+            showResults();
+            return;
+        }
+    }
+
+    // Check if answer is correct (case insensitive)
+    const isCorrect = userAnswer.toLowerCase() === correctAnswer.toLowerCase();
+
+    // Seri hesaplaması ve bonus puan
+    if (isCorrect) {
+        streakCount++;
+        comboCount++;
+        
+        // En yüksek seriyi güncelle
+        if (streakCount > bestStreak) {
+            bestStreak = streakCount;
+            gameStats.bestStreak = bestStreak;
+        }
+        
+        // Hızlı cevap kontrolü
+        const timeSpent = difficultySettings[difficulty].writingTime - writingTimeLeft;
+        if (timeSpent < 15) {
+            fastAnswers++;
+            gameStats.fastAnswers = fastAnswers;
+        }
+        
+        // Bonus hesaplama
+        let baseScore = 10;
+        let streakBonus = 0;
+        let timeBonus = 0;
+        
+        // Seri bonusu
+        if (gameModeSettings[gameMode].streakBonus && streakCount > 1) {
+            streakBonus = Math.min(streakCount, 5);
+        }
+        
+        // Zaman bonusu
+        if (writingTimeLeft > difficultySettings[difficulty].writingTime / 2) {
+            timeBonus = Math.floor(writingTimeLeft / 5);
+        }
+        
+        // İpucu cezası
+        let finalScore = baseScore;
+        if (writingHintUsed) {
+            finalScore = Math.max(1, baseScore - difficultySettings[difficulty].hintPenalty);
+        } else {
+            finalScore = baseScore + streakBonus + timeBonus;
+        }
+        
+        score += finalScore;
+        scoreDisplay2.textContent = score;
+        
+        // Bonus gösterimi
+        if (streakBonus > 0 || timeBonus > 0) {
+            let bonusText = '';
+            if (streakBonus > 0) {
+                bonusText += `+${streakBonus} seri`;
+            }
+            if (timeBonus > 0) {
+                if (bonusText) bonusText += ', ';
+                bonusText += `+${timeBonus} hız`;
+            }
+            
+            writingFeedback.innerHTML = `<i class="fas fa-check-circle me-2"></i> Doğru cevap! <span class="time-bonus">(${bonusText})</span>`;
+        } else {
+            writingFeedback.innerHTML = `<i class="fas fa-check-circle me-2"></i> Doğru cevap! "${correctAnswer}"`;
+        }
+        
+        writingFeedback.className = 'feedback feedback-success';
+        correctAnswers++;
+        gameStats.correctAnswers = correctAnswers;
+        writingAnswer.classList.add('is-valid');
+        
+        // Zamana karşı modunda süre bonusu
+        if (gameMode === 'time') {
+            writingTimeLeft += gameModeSettings.time.timeBonusForCorrect;
+            timerDisplay2.textContent = writingTimeLeft;
+        }
+        
+        // Geri dönüş başarısı için kontrol
+        if (consecutive3Wrong && !consecutive3Correct) {
+            consecutive3Correct = true;
+            gameStats.comeback = true;
+            comeback = true;
+        }
+    } else {
+        writingFeedback.innerHTML = `<i class="fas fa-times-circle me-2"></i> Yanlış cevap! Doğru cevap: "${correctAnswer}"`;
+        writingFeedback.className = 'feedback feedback-danger';
+        wrongAnswers++;
+        gameStats.wrongAnswers = wrongAnswers;
+        writingAnswer.classList.add('is-invalid');
+        streakCount = 0;
+        comboCount = 0;
+        
+        // Geri dönüş başarısı için kontrol
+        if (wrongAnswers >= 3 && !consecutive3Wrong) {
+            consecutive3Wrong = true;
+        }
+
+        if (isRuya) {
+            wrongCount++;
+            if (wrongCount % 3 === 0) {
+                showSpecialFeedback();
+            }
+        }
+    }
+
+    writingFeedback.style.display = 'block';
+    submitWritingBtn.style.display = 'none';
+    nextWritingBtn.style.display = 'block';
+    
+    // Streak gösterimi güncellemesi
+    updateStreakDisplay();
+    
+    // Başarıları kontrol et
+    checkAchievements();
+
+    // If it's the last question, the next button should move to result screen
+    if (currentWritingIndex === writingQuestions.length - 1) {
+        nextWritingBtn.innerHTML = '<i class="fas fa-flag-checkered me-2"></i> Sonuçları Gör';
+    }
+}
+
+// Function to move to the next writing question
+function nextWritingQuestion() {
+    currentWritingIndex++;
+    writingAnswer.classList.remove('is-valid', 'is-invalid');
+
+    if (currentWritingIndex < writingQuestions.length) {
+        loadWritingQuestion();
+        startWritingTimer();
+    } else {
+        // Move to result screen
+        showResults();
+    }
+}
+
+// Function to start the writing timer
+function startWritingTimer() {
+    clearInterval(timer);
+    timerDisplay2.textContent = writingTimeLeft;
+    timerBar2.style.width = '100%';
+
+    timer = setInterval(() => {
+        writingTimeLeft--;
+        timerDisplay2.textContent = writingTimeLeft;
+        timerBar2.style.width = (writingTimeLeft / difficultySettings[difficulty].writingTime * 100) + '%';
+
+        if (writingTimeLeft <= 10) {
+            timerDisplay2.classList.add('text-danger');
+            timerBar2.classList.add('bg-danger');
+        } else {
+            timerDisplay2.classList.remove('text-danger');
+            timerBar2.classList.remove('bg-danger');
+        }
+
+        if (writingTimeLeft <= 0) {
+            clearInterval(timer);
+            // Time's up, mark as incorrect
+            const currentQuestion = writingQuestions[currentWritingIndex];
+            const askForAuthor = writingQuestion.innerHTML.includes('kitabının yazarını yazınız');
+            const correctAnswer = askForAuthor ? currentQuestion.author : currentQuestion.book;
+            
+            writingFeedback.innerHTML = `<i class="fas fa-clock me-2"></i> Süre doldu! Doğru cevap: "${correctAnswer}"`;
+            writingFeedback.className = 'feedback feedback-danger';
+            writingFeedback.style.display = 'block';
+            submitWritingBtn.style.display = 'none';
+            nextWritingBtn.style.display = 'block';
+            wrongAnswers++;
+            gameStats.wrongAnswers = wrongAnswers;
+            streakCount = 0;
+            comboCount = 0;
+            
+            // Streak gösterimi güncellemesi
+            updateStreakDisplay();
+            
+            if (isRuya) {
+                wrongCount++;
+                if (wrongCount % 3 === 0) {
+                    showSpecialFeedback();
+                }
+            }
+            
+            // If it's the last question, the next button should move to result screen
+            if (currentWritingIndex === writingQuestions.length - 1) {
+                nextWritingBtn.innerHTML = '<i class="fas fa-flag-checkered me-2"></i> Sonuçları Gör';
+            }
+        }
+    }, 1000);
+}
+
+// Function to show results
+function showResults() {
+    clearInterval(timer);
+    writingScreen.style.display = 'none';
+    resultScreen.style.display = 'block';
+    
+    gameStats.score = score;
+    gameStats.gameCompleted = true;
+
+    finalScore.textContent = score;
+    totalScore.textContent = (selectedQuestions.length + writingQuestions.length) * 10;
+    correctAnswersDisplay.textContent = correctAnswers;
+    wrongAnswersDisplay.textContent = wrongAnswers;
+    bestStreakDisplay.textContent = bestStreak;
+
+    // Set result message based on score
+    const totalQuestions = selectedQuestions.length + writingQuestions.length;
+    const scorePercentage = (score / (totalQuestions * 10)) * 100;
+
+    if (scorePercentage >= 90) {
+        resultMessage.textContent = "Harika! Türk tarihi kitapları konusunda uzman seviyesindesiniz!";
+        resultIcon.innerHTML = '<i class="fas fa-trophy text-warning"></i>';
+        createConfetti();
+    } else if (scorePercentage >= 70) {
+        resultMessage.textContent = "Çok iyi! Türk tarihi kitapları hakkında güçlü bir bilgiye sahipsiniz.";
+        resultIcon.innerHTML = '<i class="fas fa-medal text-warning"></i>';
+    } else if (scorePercentage >= 50) {
+        resultMessage.textContent = "İyi! Temel Türk tarihi kitapları bilgisine sahipsiniz.";
+        resultIcon.innerHTML = '<i class="fas fa-star text-warning"></i>';
+    } else {
+        resultMessage.textContent = "Geliştirebilirsiniz. Biraz daha çalışmayla daha iyi olacaksınız.";
+        resultIcon.innerHTML = '<i class="fas fa-book text-primary"></i>';
+    }
+    
+    // Başarıları son kez kontrol et
+    checkAchievements();
+    
+    // Skoru lider tablosuna ekle
+    addToLeaderboard(currentPlayer, score, difficulty, gameMode);
+}
+
+// Function to show answers
+function showAnswers() {
+    answersTableBody.innerHTML = '';
+
+    booksAuthors.forEach((item, index) => {
+        const row = document.createElement('tr');
+
+        const indexCell = document.createElement('td');
+        indexCell.textContent = index + 1;
+
+        const authorCell = document.createElement('td');
+        authorCell.textContent = item.author;
+
+        const bookCell = document.createElement('td');
+        bookCell.textContent = item.book;
+
+        row.appendChild(indexCell);
+        row.appendChild(authorCell);
+        row.appendChild(bookCell);
+
+        answersTableBody.appendChild(row);
+    });
+
+    answersModal.show();
+}
+
+// Function to show special feedback for Rüya
+function showSpecialFeedback() {
+    specialFeedback.textContent = "MAL";
+    specialFeedback.style.display = 'block';
+
+    setTimeout(() => {
+        specialFeedback.style.display = 'none';
+    }, 2000);
+}
+
+// Function to create confetti effect
+function createConfetti() {
+    const colors = ['#e74c3c', '#f39c12', '#2ecc71', '#3498db', '#9b59b6'];
+
+    for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+        confetti.style.animationDelay = Math.random() * 2 + 's';
+        document.body.appendChild(confetti);
+
+        // Remove confetti after animation
+        setTimeout(() => {
+            confetti.remove();
+        }, 5000);
+    }
+}
+
+// Add keypress event for writing answers
+writingAnswer.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        if (submitWritingBtn.style.display !== 'none') {
+            submitWritingBtn.click();
+        } else {
+            nextWritingBtn.click();
+        }
+    }
+});
+
+// Style for confetti animation
+const style = document.createElement('style');
+style.textContent = `
+@keyframes fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+`;
+document.head.appendChild(style);
+
+// Başlangıçta parçacıkları oluştur
+createParticles();
+});
+</script>
