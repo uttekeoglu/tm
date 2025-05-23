@@ -3,17 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Türk Tarihi Öğrenme Kartları</title>
+    <title>🏛️ İki Savaş Arası Balkanlar - Sınav Hazırlık Oyunu</title>
     <style>
-        :root {
-            --primary: #c0392b;
-            --secondary: #e74c3c;
-            --accent: #f39c12;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --success: #27ae60;
-        }
-        
         * {
             margin: 0;
             padding: 0;
@@ -22,1450 +13,1603 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        header {
-            background-color: var(--primary);
-            color: white;
-            text-align: center;
-            padding: 1.5rem 0;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        h1 {
-            font-size: 1.8rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 20px;
         }
         
-        .controls {
+        .header {
+            text-align: center;
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+        
+        /* Oyuncu İstatistikleri */
+        .player-stats {
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
+            justify-content: space-around;
+            align-items: center;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 15px;
         }
         
-        .btn {
-            background-color: var(--primary);
+        .stat-card {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
             color: white;
-            border: none;
-            padding: 0.7rem 1.2rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 120px;
+            transition: transform 0.3s ease;
         }
         
-        .btn:hover {
-            background-color: var(--secondary);
+        .stat-card:hover {
+            transform: translateY(-3px);
         }
         
-        .btn:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
+        .stat-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
         }
         
-        .btn-accent {
-            background-color: var(--accent);
+        .stat-card p {
+            font-size: 0.9em;
+            opacity: 0.9;
         }
         
-        .btn-accent:hover {
-            background-color: #e67e22;
-        }
-        
-        .category-selector {
-            padding: 0.6rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            min-width: 220px;
-        }
-        
-        .card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+        /* Rozetler */
+        .badges {
             display: flex;
-            flex-direction: column;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .badge {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            transition: all 0.3s ease;
+            cursor: pointer;
             position: relative;
-            overflow: hidden;
-            transform: translateY(0);
-            transition: transform 0.3s, box-shadow 0.3s;
         }
         
-        .card:hover {
+        .badge.unlocked {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            animation: glow 2s infinite alternate;
+        }
+        
+        .badge.locked {
+            background: #bdc3c7;
+            color: #7f8c8d;
+        }
+        
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(243, 156, 18, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(243, 156, 18, 0.8); }
+        }
+        
+        /* Sekmeler */
+        .tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 15px 25px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tab-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+        
+        .tab-btn.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        /* İçerik Alanı */
+        .content-area {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            min-height: 400px;
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        /* Eğitim Bölümü */
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .topic-card {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .topic-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
         
-        .card-header {
+        .topic-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .topic-detail {
+            display: none;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 5px solid #3498db;
+        }
+        
+        .memory-tip {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .memory-tip h4 {
+            color: #f39c12;
+            margin-bottom: 8px;
+        }
+        
+        /* Sınav Tüyoları */
+        .exam-tips {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .tip-card {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #f39c12;
+        }
+        
+        .critical-info {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        /* Quiz Bölümü */
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .difficulty-selector {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .difficulty-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .difficulty-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .difficulty-btn.easy { background: #2ecc71; color: white; }
+        .difficulty-btn.medium { background: #f39c12; color: white; }
+        .difficulty-btn.hard { background: #e74c3c; color: white; }
+        .difficulty-btn.selected { transform: scale(1.1); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        
+        .quiz-progress {
+            background: #ecf0f1;
+            height: 8px;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .quiz-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+        
+        .question-container {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .question-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 0.8rem;
-            margin-bottom: 1rem;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
         
-        .card-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--primary);
-        }
-        
-        .card-badge {
-            background-color: var(--accent);
+        .timer {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
             color: white;
-            font-size: 0.8rem;
-            padding: 0.3rem 0.6rem;
+            padding: 8px 15px;
             border-radius: 20px;
             font-weight: bold;
         }
         
-        .card-content {
-            margin-bottom: 1rem;
-        }
-        
-        .work-title {
+        .question-text {
+            font-size: 1.3em;
             font-weight: bold;
-            color: var(--dark);
-            margin-top: 0.5rem;
-            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: #2c3e50;
         }
         
-        .work-description {
-            color: #555;
-            margin-top: 0.3rem;
-            font-size: 0.95rem;
-        }
-        
-        .cards-container {
-            margin-top: 2rem;
-        }
-        
-        .cards-grid {
+        .options {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+            gap: 12px;
+            margin-bottom: 25px;
         }
         
-        .sticky-note {
-            background-color: #fef9c3;
-            padding: 1rem;
-            border-radius: 0 0 8px 8px;
-            font-style: italic;
-            font-size: 0.9rem;
-            margin-top: auto;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        .quiz-container {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .quiz-question {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            font-weight: bold;
-        }
-        
-        .quiz-options {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.8rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .quiz-option {
-            background-color: #f5f5f5;
+        .option {
+            padding: 15px 20px;
+            background: white;
             border: 2px solid #ddd;
-            border-radius: 4px;
-            padding: 0.8rem;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
+            font-size: 1em;
         }
         
-        .quiz-option:hover {
-            background-color: #e5e5e5;
+        .option:hover {
+            border-color: #3498db;
+            background: #ecf0f1;
+            transform: translateX(5px);
         }
         
-        .quiz-option.selected {
-            background-color: #d5f5e3;
-            border-color: var(--success);
+        .option.selected {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
         }
         
-        .quiz-option.correct {
-            background-color: #d5f5e3;
-            border-color: var(--success);
+        .option.correct {
+            background: #27ae60;
+            color: white;
+            border-color: #27ae60;
         }
         
-        .quiz-option.incorrect {
-            background-color: #fadbd8;
-            border-color: var(--secondary);
+        .option.incorrect {
+            background: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
         }
         
-        .quiz-footer {
+        .quiz-controls {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 1rem;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
         
-        .quiz-progress {
-            background-color: #eee;
-            height: 10px;
-            border-radius: 5px;
-            overflow: hidden;
-            margin-bottom: 1rem;
-            width: 100%;
-        }
-        
-        .quiz-progress-bar {
-            height: 100%;
-            background-color: var(--success);
-            width: 0%;
-            transition: width 0.3s;
-        }
-        
-        .quiz-score {
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-        
-        .flashcard {
-            perspective: 1000px;
-            height: 200px;
-            margin-bottom: 2rem;
-        }
-        
-        .flashcard-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
             cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
         }
         
-        .flashcard.flipped .flashcard-inner {
-            transform: rotateY(180deg);
-        }
-        
-        .flashcard-front, .flashcard-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .flashcard-front {
-            background-color: white;
-        }
-        
-        .flashcard-back {
-            background-color: var(--primary);
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
             color: white;
-            transform: rotateY(180deg);
         }
         
-        .flashcard-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 0.8rem;
+        .btn-success {
+            background: linear-gradient(135deg, #27ae60, #229954);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .result-section {
             text-align: center;
-        }
-        
-        .flashcard-subtitle {
-            font-size: 0.9rem;
-            color: #777;
-            margin-bottom: 0.5rem;
-        }
-        
-        .flashcard-question {
-            font-size: 1.3rem;
-            font-weight: bold;
-            text-align: center;
-        }
-        
-        .flashcard-info {
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.8);
-            text-align: center;
-        }
-        
-        .tab-container {
-            margin-bottom: 2rem;
-        }
-        
-        .tabs {
-            display: flex;
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 1.5rem;
-        }
-        
-        .tab {
-            padding: 0.8rem 1.5rem;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
-        }
-        
-        .tab.active {
-            border-bottom-color: var(--primary);
-            color: var(--primary);
-            font-weight: bold;
-        }
-        
-        .tab-content {
+            padding: 30px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border-radius: 12px;
+            margin-top: 20px;
             display: none;
         }
         
-        .tab-content.active {
-            display: block;
+        /* Animasyonlar */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .group-title {
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin: 2rem 0 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #eee;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
         
-        footer {
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
-            background-color: var(--dark);
-            color: white;
+        .fade-in {
+            animation: fadeIn 0.5s ease;
         }
         
+        .pulse {
+            animation: pulse 0.6s ease;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .controls {
-                flex-direction: column;
-            }
+            .header h1 { font-size: 2em; }
+            .tabs { flex-direction: column; align-items: center; }
+            .topic-grid { grid-template-columns: 1fr; }
+            .tips-grid { grid-template-columns: 1fr; }
+            .player-stats { flex-direction: column; }
+            .quiz-controls { flex-direction: column; text-align: center; }
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+        }
+        
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c3e50;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .tooltip:hover::after {
+            opacity: 1;
+            visibility: visible;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>AA Alma Garantili Ders Çalışma</h1>
-    </header>
-    
     <div class="container">
-        <div class="tab-container">
-            <div class="tabs">
-                <div class="tab active" data-tab="categories">Kategoriler</div>
-                <div class="tab" data-tab="flashcards">Hafıza Kartları</div>
-                <div class="tab" data-tab="quiz">Quiz</div>
+        <!-- Header -->
+        <div class="header">
+            <h1>🏛️ İki Savaş Arası Balkanlar</h1>
+            <p>Eğlenceli Sınav Hazırlık Oyunu (1919-1939)</p>
+        </div>
+        
+        <!-- Oyuncu İstatistikleri -->
+        <div class="player-stats">
+            <div class="stat-card">
+                <h3 id="playerLevel">1</h3>
+                <p>Seviye</p>
             </div>
-            
-            <div class="tab-content active" id="categories-content">
-                <div class="controls">
-                    <div>
-                        <button class="btn" id="expand-all">Tümünü Genişlet</button>
-                        <button class="btn" id="collapse-all">Tümünü Daralt</button>
+            <div class="stat-card">
+                <h3 id="playerXP">0</h3>
+                <p>Deneyim Puanı</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="totalScore">0</h3>
+                <p>Toplam Puan</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="streak">0</h3>
+                <p>En Uzun Seri</p>
+            </div>
+        </div>
+        
+        <!-- Rozetler -->
+        <div class="badges">
+            <div class="badge locked tooltip" data-tooltip="Uğur" id="badge0">🌟</div>
+            <div class="badge locked tooltip" data-tooltip="İlk doğru cevap" id="badge1">😉</div>
+            <div class="badge locked tooltip" data-tooltip="5 doğru üst üste" id="badge2">🔥</div>
+            <div class="badge locked tooltip" data-tooltip="Quiz tamamla" id="badge3">🎯</div>
+            <div class="badge locked tooltip" data-tooltip="80% üzeri başarı" id="badge4">🏆</div>
+            <div class="badge locked tooltip" data-tooltip="Tarih uzmanı" id="badge5">👑</div>
+        </div>
+        
+        <!-- Sekmeler -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showSection('education')">📚 Eğitim</button>
+            <button class="tab-btn" onclick="showSection('tips')">💡 Sınav Tüyoları</button>
+            <button class="tab-btn" onclick="showSection('memory')">🧠 Hafıza Teknikleri</button>
+            <button class="tab-btn" onclick="showSection('quiz')">🎮 Quiz</button>
+        </div>
+        
+        <!-- İçerik Alanı -->
+        <div class="content-area">
+            <!-- Eğitim Bölümü -->
+            <div id="education" class="section active">
+                <h2 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">📖 Eğitim Konuları</h2>
+                
+                <div class="topic-grid">
+                    <div class="topic-card" onclick="toggleTopic('topic1')">
+                        <h3>🏛️ Barış Antlaşmaları</h3>
+                        <p>Versailles, Saint-Germain, Neuilly, Trianon antlaşmaları</p>
                     </div>
-                    <select class="category-selector" id="jump-to-category">
-                        <option value="">Kategoriye Atla</option>
-                        <option value="category-1">Modern Batılı Araştırmacılar</option>
-                        <option value="category-2">Türk ve Sovyet Araştırmacılar</option>
-                        <option value="category-3">Barthold'un Eserleri</option>
-                        <option value="category-4">Çin Kaynaklarından Çeviriler</option>
-                        <option value="category-5">Orta Çağ Türk Edebiyatı</option>
-                        <option value="category-6">Ortaçağ Tarih Kronikleri</option>
-                        <option value="category-7">Babürlü ve Timurlu Eserleri</option>
-                        <option value="category-8">Seyahatnameler</option>
-                    </select>
+                    
+                    <div class="topic-card" onclick="toggleTopic('topic2')">
+                        <h3>🇬🇷 Yunanistan</h3>
+                        <p>Megalo İdea, Küçük Asya felaketi, Albaylar diktatörlüğü</p>
+                    </div>
+                    
+                    <div class="topic-card" onclick="toggleTopic('topic3')">
+                        <h3>🇧🇬 Bulgaristan</h3>
+                        <p>Stambuliski dönemi, darbeler, ekonomik yapı</p>
+                    </div>
+                    
+                    <div class="topic-card" onclick="toggleTopic('topic4')">
+                        <h3>🇷🇸 Yugoslavya</h3>
+                        <p>Güney Slav birliği, etnik sorunlar, Marsilya felaketi</p>
+                    </div>
+                    
+                    <div class="topic-card" onclick="toggleTopic('topic5')">
+                        <h3>🇷🇴 Romanya</h3>
+                        <p>Büyük Romanya, azınlık sorunları, Kral Carol</p>
+                    </div>
+                    
+                    <div class="topic-card" onclick="toggleTopic('topic6')">
+                        <h3>🇦🇱 Arnavutluk</h3>
+                        <p>Modern devlet inşası, Wilson'un desteği</p>
+                    </div>
+                    
+                    <div class="topic-card" onclick="toggleTopic('topic7')">
+                        <h3>🤝 Uluslararası İlişkiler</h3>
+                        <p>Küçük Antant, Balkan Antantı, İtalyan tehdidi</p>
+                    </div>
+                    
+                    <div class="topic-card" onclick="toggleTopic('topic8')">
+                        <h3>💰 Ekonomik Kriz</h3>
+                        <p>1929 krizi, diktatörlüklere geçiş</p>
+                    </div>
                 </div>
                 
-                <div class="cards-container">
-                    <!-- 1. Modern Batılı Araştırmacıların Eserleri -->
-                    <h2 class="group-title" id="category-1">1. Modern Batılı Araştırmacıların Eserleri</h2>
-                    <div class="cards-grid">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">René Grousset</div>
-                                <div class="card-badge">Batılı</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Bozkır İmparatorluğu</div>
-                                <div class="work-description">Türk-Moğol İmparatorluklarının tarihini kapsamlı bir şekilde ele alan önemli bir eser.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Fransız tarihçi, Avrasya göçebe kültürlerini inceledi</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Jean-Paul Roux</div>
-                                <div class="card-badge">Batılı</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Türklerin Tarihi</div>
-                                <div class="work-description">Türk tarihini geniş bir zaman diliminde inceleyerek kültürel ve siyasi gelişimlerini anlatan kapsamlı bir çalışma.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Fransız tarihçi ve dinler tarihçisi</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Denis Sinor</div>
-                                <div class="card-badge">Batılı</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Erken İç Asya Tarihi</div>
-                                <div class="work-description">İç Asya'nın erken dönemlerini anlatan önemli bir kolektif çalışma. Sinor bu kitabın derleyicisidir.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Macar asıllı İç Asya ve Altay dilleri uzmanı</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Peter Golden</div>
-                                <div class="card-badge">Batılı</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Türk Halkları Tarihine Giriş</div>
-                                <div class="work-description">Türk halklarının tarihine genel bir bakış sunan ve temel bilgileri içeren önemli bir kaynak.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Amerikalı tarihçi, Türk ve Avrasya tarihi uzmanı</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Vasili Radlof</div>
-                                <div class="card-badge">Batılı</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Erste Lieferung</div>
-                                <div class="work-description">Türk lehçelerinin karşılaştırmalı grameri ve sözlük çalışması olan bu eser, Türkoloji açısından önemlidir.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Alman kökenli Rus Türkolog ve etnograf</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Arminus Vambery</div>
-                                <div class="card-badge">Batılı</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Bir Sahte Dervişin Asya-yı Vusta'ya Seyahati</div>
-                                <div class="work-description">Orta Asya'ya derviş kılığında yaptığı seyahatlerini anlatan önemli bir seyahatname.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Macar Türkolog, Orta Asya'yı derviş kılığında gezen araştırmacı</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Anthony Jenkinson</div>
-                                <div class="card-badge">Batılı</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Seyahatnamesi</div>
-                                <div class="work-description">16. yüzyılda Osmanlı İmparatorluğu, İran ve Orta Asya bölgelerine yaptığı seyahatleri anlatan eser.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: İngiliz kâşif ve tüccar, 16. yüzyılda yaşadı</div>
-                        </div>
+                <!-- Konu Detayları -->
+                <div id="topic1" class="topic-detail">
+                    <h3>🏛️ Barış Antlaşmaları (1919-1920)</h3>
+                    <p><strong>Balkan Savaşları (1912-1913)</strong> ve <strong>Birinci Dünya Savaşı (1914-1918)</strong> sonrası düzen:</p>
+                    <ul>
+                        <li><strong>Versailles (28 Haziran 1919):</strong> Yugoslavya'ya şekil verdi</li>
+                        <li><strong>Saint-Germain (10 Eylül 1919):</strong> Avusturya parçalandı</li>
+                        <li><strong>Neuilly (27 Kasım 1919):</strong> Bulgaristan küçültüldü</li>
+                        <li><strong>Trianon (4 Haziran 1920):</strong> Macaristan yeniden şekillendirildi</li>
+                    </ul>
+                    <div class="memory-tip">
+                        <h4>💡 Hafıza Hilesi:</h4>
+                        <p><strong>"VSNT"</strong> = <strong>V</strong>ersailles, <strong>S</strong>aint-Germain, <strong>N</strong>euilly, <strong>T</strong>rianon</p>
+                    </div>
+                </div>
+                
+                <div id="topic2" class="topic-detail">
+                    <h3>🇬🇷 Yunanistan (1919-1939)</h3>
+                    <p><strong>Megalo İdea:</strong> "Büyük İdea" - Bizans İmparatorluğu'nu yeniden kurma hayali</p>
+                    <ul>
+                        <li><strong>15 Mayıs 1919:</strong> İzmir'in işgali</li>
+                        <li><strong>9 Eylül 1922:</strong> "Küçük Asya felaketi"</li>
+                        <li><strong>1.3 milyon mülteci</strong> anavatana dönüş</li>
+                        <li><strong>1967-1974:</strong> Albaylar diktatörlüğü</li>
+                    </ul>
+                    <div class="memory-tip">
+                        <h4>🎯 Sınav İpucu:</h4>
+                        <p><strong>"3P Albayları":</strong> <strong>P</strong>apadopoulos, <strong>P</strong>attakos, <strong>M</strong>akarezos</p>
+                    </div>
+                </div>
+                
+                <div id="topic3" class="topic-detail">
+                    <h3>🇧🇬 Bulgaristan (1919-1939)</h3>
+                    <p>İki savaş arası dönemde <strong>şiddet ve darbeler</strong> dönemi:</p>
+                    <ul>
+                        <li><strong>Aleksandr Stambuliski (1919-1923):</strong> Çiftçi Partisi lideri</li>
+                        <li><strong>1923 Haziran:</strong> Darbe ile öldürüldü</li>
+                        <li><strong>19 Mayıs 1934:</strong> "Zveno" grubu darbesi</li>
+                        <li><strong>%80 tarım:</strong> En az gelişmiş Balkan ülkesi</li>
+                    </ul>
+                    <div class="memory-tip">
+                        <h4>🧠 Akılda Kalması İçin:</h4>
+                        <p><strong>Stambuliski = İstanbul + Çiftçi</strong> (tarım odaklı)</p>
+                    </div>
+                </div>
+                
+                <div id="topic4" class="topic-detail">
+                    <h3>🇷🇸 Yugoslavya (1918-1939)</h3>
+                    <p><strong>1 Aralık 1918:</strong> "Sırp, Hırvat, Sloven Krallığı" kuruldu</p>
+                    <ul>
+                        <li><strong>%17 azınlık:</strong> 2 milyondan fazla farklı etnik grup</li>
+                        <li><strong>28 Haziran 1921:</strong> "Vidovdan Anayasası"</li>
+                        <li><strong>9 Ocak 1929:</strong> I. Aleksandar diktatörlüğü</li>
+                        <li><strong>9 Ekim 1934:</strong> "Marsilya Felaketi" (suikast)</li>
+                    </ul>
+                    <div class="memory-tip">
+                        <h4>📅 Tarih Hileleri:</h4>
+                        <p><strong>Vidovdan = Video + Dan</strong> (tarihi video gibi)</p>
+                    </div>
+                </div>
+                
+                <div id="topic5" class="topic-detail">
+                    <h3>🇷🇴 Romanya (1919-1939)</h3>
+                    <p><strong>Büyük Romanya:</strong> En fazla toprak kazanan ülke</p>
+                    <ul>
+                        <li><strong>Transilvanya:</strong> Macar azınlığı</li>
+                        <li><strong>Dobruca:</strong> Bulgar köylüler</li>
+                        <li><strong>Bessarabya:</strong> Rus etkisi</li>
+                        <li><strong>1938:</strong> Kral Carol diktatörlüğü</li>
+                    </ul>
+                    <div class="memory-tip">
+                        <h4>🗺️ Coğrafi Hafıza:</h4>
+                        <p><strong>"TDB":</strong> <strong>T</strong>ransilvanya-Macar, <strong>D</strong>obruca-Bulgar, <strong>B</strong>essarabya-Rus</p>
+                    </div>
+                </div>
+                
+                <div id="topic6" class="topic-detail">
+                    <h3>🇦🇱 Arnavutluk (1920-1939)</h3>
+                    <p><strong>1920:</strong> Wilson'un desteği ile yeniden kuruldu</p>
+                    <ul>
+                        <li><strong>%90 okuma-yazma bilmiyor</strong></li>
+                        <li><strong>8 dolar kişi başına gelir</strong> (Fransa 140$)</li>
+                        <li><strong>%85 köylü nüfus</strong></li>
+                        <li><strong>Aralık 1920:</strong> Cemiyet-i Akvam'a üye</li>
+                    </ul>
+                    <div class="memory-tip">
+                        <h4>💰 Sayı Hileleri:</h4>
+                        <p><strong>%90 okuma bilmiyor = A notu ama ters!</strong></p>
+                    </div>
+                </div>
+                
+                <div id="topic7" class="topic-detail">
+                    <h3>🤝 Uluslararası İlişkiler</h3>
+                    <p><strong>Küçük Antant (1921):</strong> Çekoslovakya + Romanya + Yugoslavya</p>
+                    <p><strong>Balkan Antantı (9 Şubat 1934):</strong> Türkiye + Yunanistan + Romanya + Yugoslavya</p>
+                    <ul>
+                        <li><strong>Katılmayanlar:</strong> Bulgaristan ve Arnavutluk</li>
+                        <li><strong>İtalyan Tehdidi:</strong> Mussolini'nin "mare nostrum" hayali</li>
+                        <li><strong>Fransa'nın Desteği:</strong> Sovyet Rusya'ya karşı tampon</li>
+                    </ul>
+                    <div class="memory-tip">
+                        <h4>🔤 Kısaltmalar:</h4>
+                        <p><strong>Küçük Antant:</strong> ÇRY | <strong>Balkan Antantı:</strong> TYRY</p>
+                    </div>
+                </div>
+                
+                <div id="topic8" class="topic-detail">
+                    <h3>💰 Ekonomik Kriz ve Diktatörlükler</h3>
+                    <p><strong>1929 Dünya Ekonomik Krizi</strong> Balkanları derinden etkiledi</p>
+                    <ul>
+                        <li><strong>1919-1930:</strong> Demokratikleşme hedefleri</li>
+                        <li><strong>1930-1939:</strong> Diktatörlük dönemine geçiş</li>
+                        <li><strong>1929:</strong> Aleksandar (Yugoslavya)</li>
+                        <li><strong>1936:</strong> "4 Ağustos Rejimi" (Yunanistan)</li>
+                        <li><strong>1938:</strong> Kral Carol (Romanya)</li>
+                    </ul>
+                    <div class="memory-tip">
+                        <h4>📊 Kronoloji:</h4>
+                        <p><strong>Diktatörlük Sırası:</strong> 1929→1936→1938 (YYR)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sınav Tüyoları -->
+            <div id="tips" class="section">
+                <div class="exam-tips">
+                    <h3>🎯 Yazılı Sınav Stratejileri</h3>
+                    <p>Klasik sınavlarda başarı için kanıtlanmış yöntemler!</p>
+                </div>
+                
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <h4>⏰ Zaman Yönetimi</h4>
+                        <ul>
+                            <li>İlk 5 dk: Tüm soruları oku</li>
+                            <li>Kolay sorulardan başla</li>
+                            <li>Her soru için maksimum süre belirle</li>
+                            <li>Son 10 dk: Kontrol ve düzeltme</li>
+                        </ul>
                     </div>
                     
-                    <!-- 2. Türk ve Sovyet Araştırmacıların Modern Eserleri -->
-                    <h2 class="group-title" id="category-2">2. Türk ve Sovyet Araştırmacıların Modern Eserleri</h2>
-                    <div class="cards-grid">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Akdes Nimet Kurat</div>
-                                <div class="card-badge">Türk</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">IV-XVIII. Yüzyıllarda Karadeniz Kuzeyinde Türk Kavimleri ve Devletleri</div>
-                                <div class="work-description">Karadeniz'in kuzeyindeki Türk kavimlerinin tarihini anlatan önemli bir akademik çalışma.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Önemli Türk tarihçi, Rusya ve Avrasya tarihi uzmanı</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Akdes Nimet Kurat</div>
-                                <div class="card-badge">Türk</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Topkapı Sarayı Müzesi Arşivindeki Altın Ordu, Kırım ve Türkistan Hanlıklarına Ait Yarlıklar ve Bitikler</div>
-                                <div class="work-description">Topkapı Sarayı arşivindeki önemli Türk-Moğol belgeleri üzerine bir inceleme.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Arşiv belgeleri üzerine önemli çalışmalar yaptı</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">A. Zeki Velidi Togan</div>
-                                <div class="card-badge">Türk</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Umumi Türk Tarihine Giriş</div>
-                                <div class="work-description">Genel Türk tarihini ele alan temel bir giriş kitabı niteliğindedir.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Başkurt kökenli tarihçi, Türkistan milli hareketi lideri</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Necib Asım</div>
-                                <div class="card-badge">Türk</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Orhun Abideleri</div>
-                                <div class="work-description">Göktürk yazıtları üzerine yapılan önemli çalışmalardan biridir.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Osmanlı-Türk dil bilimci ve tarihçi</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Özkan İzgi</div>
-                                <div class="card-badge">Türk</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Çin Elçisi Wang Yen-te'nin Uygur Seyahatnamesi</div>
-                                <div class="work-description">10. yüzyılda Çin elçisinin Uygur bölgesine yaptığı seyahati anlatan metnin çevirisi ve incelemesi.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Türk tarihçi, Uygur tarihi üzerine çalışmalar yaptı</div>
-                        </div>
+                    <div class="tip-card">
+                        <h4>📝 Yazma Tekniği</h4>
+                        <ul>
+                            <li>Giriş-Gelişme-Sonuç formatı</li>
+                            <li>Önemli tarihleri <strong>kalın</strong> yaz</li>
+                            <li>Kısa ve anlaşılır cümleler</li>
+                            <li>Paragrafları numaralandır</li>
+                        </ul>
                     </div>
                     
-                    <!-- Diğer kategoriler için benzer yapıyı tekrarlayın -->
-                    
-                    <!-- 3. Barthold'un Eserleri -->
-                    <h2 class="group-title" id="category-3">3. Barthold'un Eserleri</h2>
-                    <div class="cards-grid">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">V.V. Barthold</div>
-                                <div class="card-badge">Sovyet</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Moğol İstilasına Kadar Türkistan</div>
-                                <div class="work-description">Moğol istilası öncesi Türkistan bölgesinin siyasi, ekonomik ve kültürel tarihini inceleyen başyapıt.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Rus oryantalist, Orta Asya tarihi uzmanı</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">V.V. Barthold</div>
-                                <div class="card-badge">Sovyet</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Ali Şir Nevai ve Uluğ Bek monografileri</div>
-                                <div class="work-description">Timurlu dönemi önemli şahsiyetleri üzerine biyografik çalışmalar.</div>
-                            </div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">V.V. Barthold</div>
-                                <div class="card-badge">Sovyet</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Orta Asya Türk Tarihi Hakkında Dersler</div>
-                                <div class="work-description">Barthold'un Türk tarihi üzerine verdiği derslerin derlenmesiyle oluşan eser.</div>
-                            </div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">V.V. Barthold</div>
-                                <div class="card-badge">Sovyet</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">İslam Medeniyeti Tarihi</div>
-                                <div class="work-description">İslam medeniyetinin gelişimini tarihsel perspektiften inceleyen kapsamlı bir çalışma.</div>
-                            </div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">V.V. Barthold</div>
-                                <div class="card-badge">Sovyet</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Rusya ve Avrupa'da Oryantalizm</div>
-                                <div class="work-description">Doğu araştırmalarının Avrupa ve Rusya'daki gelişimini anlatan eser.</div>
-                            </div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">V.V. Barthold</div>
-                                <div class="card-badge">Sovyet</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Semireçye Tarihi</div>
-                                <div class="work-description">Yedisu bölgesinin tarihini inceleyen önemli bir monografi.</div>
-                            </div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">V.V. Barthold</div>
-                                <div class="card-badge">Sovyet</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Türkmen Halkının Tarihi</div>
-                                <div class="work-description">Türkmen halklarının tarihsel gelişimine odaklanan çalışma.</div>
-                            </div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">V.V. Barthold</div>
-                                <div class="card-badge">Sovyet</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Türkistan'ın Kültür Hayatının Tarihi</div>
-                                <div class="work-description">Türkistan'ın kültürel gelişimini tarihsel süreç içinde inceleyen kapsamlı çalışma.</div>
-                            </div>
-                        </div>
+                    <div class="tip-card">
+                        <h4>🎭 Analiz Şablonu</h4>
+                        <ul>
+                            <li><strong>Ne oldu?</strong> (Olay tanımı)</li>
+                            <li><strong>Ne zaman?</strong> (Tarih)</li>
+                            <li><strong>Nerede?</strong> (Yer)</li>
+                            <li><strong>Neden?</strong> (Sebepler)</li>
+                            <li><strong>Sonuç?</strong> (Etkiler)</li>
+                        </ul>
                     </div>
                     
-                    <!-- 4. Çin Kaynaklarından Çeviriler -->
-                    <h2 class="group-title" id="category-4">4. Çin Kaynaklarından Çeviriler</h2>
-                    <div class="cards-grid">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Ayşe Onat, Sema Orsoy, Konuralp Ercilasun</div>
-                                <div class="card-badge">Çeviri</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Çin Kaynaklarında Türkler: Han Hanedanlığı Tarihi</div>
-                                <div class="work-description">Çin kaynaklarından Han Hanedanlığı döneminde Türklerle ilgili bölümlerin çevirisi.</div>
-                            </div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Ayşe Onat</div>
-                                <div class="card-badge">Çeviri</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Çin Kaynaklarında Türkler: Han Hanedanı Tarihinde "Batı Bölgeleri"</div>
-                                <div class="work-description">Han Hanedanı tarihlerinde geçen "Batı Bölgeleri" ile ilgili metinlerin çevirisi.</div>
-                            </div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">İsenbike Togan, Gülnar Kara, Cahide Baysal</div>
-                                <div class="card-badge">Çeviri</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Çin Kaynakları'nda Türkler: Eski T'ang Tarihi</div>
-                                <div class="work-description">T'ang hanedanlığı dönemine ait Çin kaynaklarında Türklerle ilgili bölümlerin çevirisi.</div>
-                            </div>
-                        </div>
+                    <div class="tip-card">
+                        <h4>🏆 Puan Toplama</h4>
+                        <ul>
+                            <li>Her faktör ayrı cümle</li>
+                            <li>"Birinci sebep, İkinci sebep..."</li>
+                            <li>Örneklerle destekle</li>
+                            <li>Karşılaştırma yap</li>
+                        </ul>
                     </div>
                     
-                    <!-- 5. Orta Çağ Dönemi Türk Edebiyatı ve Düşüncesi -->
-                    <h2 class="group-title" id="category-5">5. Orta Çağ Dönemi Türk Edebiyatı ve Düşüncesi</h2>
-                    <div class="cards-grid">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Yusuf Has Hacib</div>
-                                <div class="card-badge">Edebiyat</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Kutadgu Bilig (Mutluluk Bilgisi)</div>
-                                <div class="work-description">Türk-İslam edebiyatının ilk büyük eseri, siyasetname türünde yazılmış bir mesnevidir.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: 11. yüzyılda Karahanlı döneminde yazıldı</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Kaşgarlı Mahmud</div>
-                                <div class="card-badge">Edebiyat</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Divânu Lügati't-Türk (Büyük Türk Sözlüğü)</div>
-                                <div class="work-description">Türkçeden Arapçaya sözlük ve Türk kültürü ansiklopedisi niteliğinde kapsamlı bir eser.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: 11. yüzyılda yazılan ilk Türkçe sözlük</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Ahmet Yesevi</div>
-                                <div class="card-badge">Edebiyat</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Divan-ı Hikmet</div>
-                                <div class="work-description">Tasavvufi düşünceleri Türkçe şiirlerle anlatan, halk edebiyatına yön veren önemli bir eser.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Türk tasavvuf geleneğinin kurucusu</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Edip Ahmet Yükneki</div>
-                                <div class="card-badge">Edebiyat</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Atabet'ül Hakayık (Hakikatlerin Eşiği)</div>
-                                <div class="work-description">İslami ahlak ve adabı öğreten didaktik bir Türkçe eserdir.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: 12. yüzyılda Karahanlı döneminde yazıldı</div>
-                        </div>
+                    <div class="tip-card">
+                        <h4>📅 Tarih Yazma</h4>
+                        <ul>
+                            <li>Tam tarih: 28 Haziran 1919</li>
+                            <li>Dönem: "1920'li yıllarda..."</li>
+                            <li>Belirsizlik: "19. yy sonları"</li>
+                            <li>Kronoloji: olayları sırala</li>
+                        </ul>
                     </div>
                     
-                    <!-- 6. Ortaçağ Dönemi Tarih Kronikleri -->
-                    <h2 class="group-title" id="category-6">6. Ortaçağ Dönemi Tarih Kronikleri</h2>
-                    <div class="cards-grid">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Ata Melik Cüveyni</div>
-                                <div class="card-badge">Kronik</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Tarih-i Cihangüşâ</div>
-                                <div class="work-description">Moğol İmparatorluğu'nun yükselişini anlatan önemli bir tarihsel kaynak.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: 13. yüzyılda İlhanlı devlet adamı ve tarihçi</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Reşidü'd-din Fazlullâh</div>
-                                <div class="card-badge">Kronik</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Câmi'u't-tevârîh</div>
-                                <div class="work-description">İlhanlı döneminde yazılmış kapsamlı bir dünya tarihi.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: İlhanlı veziri ve tarihçi, 14. yüzyıl başları</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Ötemiş Hacı</div>
-                                <div class="card-badge">Kronik</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Tarih-i Dost Sultan</div>
-                                <div class="work-description">Altın Orda ve Deşt-i Kıpçak tarihi hakkında önemli bilgiler içeren eser.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: 16. yüzyılda Harezm'de yaşamış tarihçi</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">İmam-ı Ebü'l-Fütuh Abdülgafur</div>
-                                <div class="card-badge">Kronik</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Tarih-i Kaşgar</div>
-                                <div class="work-description">Kaşgar bölgesinin tarihini anlatan önemli bir yerel tarih eseri.</div>
-                            </div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Muhammed Salih</div>
-                                <div class="card-badge">Kronik</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Şeybani-name</div>
-                                <div class="work-description">Özbek hanı Şeybani Han'ın seferlerini anlatan manzum tarih.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: 16. yüzyıl başlarında Çağatay Türkçesiyle yazıldı</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Ebulgazi Bahadır Han</div>
-                                <div class="card-badge">Kronik</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Şecere-i Türk</div>
-                                <div class="work-description">Türklerin soy kütüğü olarak yazılmış önemli bir tarih kitabı.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Hive Hanı ve tarihçi, 17. yüzyıl</div>
-                        </div>
+                    <div class="tip-card">
+                        <h4>🔍 Son Kontrol</h4>
+                        <ul>
+                            <li>Tarihler doğru mu?</li>
+                            <li>Ülke adları kontrolü</li>
+                            <li>Kişi adları doğru mu?</li>
+                            <li>İmla kontrolü</li>
+                        </ul>
                     </div>
-                    
-                    <!-- 7. Babürlü ve Timurlu Dönemi Eserleri -->
-                    <h2 class="group-title" id="category-7">7. Babürlü ve Timurlu Dönemi Eserleri</h2>
-                    <div class="cards-grid">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Gülbeden Begüm</div>
-                                <div class="card-badge">Babürlü</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Hümayunnâme</div>
-                                <div class="work-description">Babür İmparatorluğu'nun kuruluş dönemini ve Hümayun'un saltanatını anlatan hatırat.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Babür'ün kızı ve ilk kadın tarihçilerden biri</div>
+                </div>
+                
+                <div class="critical-info">
+                    <h3>🔥 Sınavda Kesinlikle Bilinmesi Gerekenler</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 15px;">
+                        <div>
+                            <h4>📅 Kritik Tarihler</h4>
+                            <ul>
+                                <li><strong>1918:</strong> Yugoslavya kuruldu</li>
+                                <li><strong>1919:</strong> Barış antlaşmaları</li>
+                                <li><strong>1922:</strong> Küçük Asya felaketi</li>
+                                <li><strong>1929:</strong> Ekonomik kriz</li>
+                                <li><strong>1934:</strong> Balkan Antantı</li>
+                            </ul>
                         </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Cihangir</div>
-                                <div class="card-badge">Babürlü</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Tüzük-i Jihangir</div>
-                                <div class="work-description">Babürlü hükümdarı Cihangir'in saltanatını anlatan otobiyografik eser.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Babürlü hükümdarı, Ekber'in oğlu</div>
+                        <div>
+                            <h4>👑 Önemli Liderler</h4>
+                            <ul>
+                                <li><strong>Stambuliski:</strong> Bulgaristan Çiftçi Partisi</li>
+                                <li><strong>I. Aleksandar:</strong> Yugoslavya Kralı</li>
+                                <li><strong>Kral Carol:</strong> Romanya diktatörü</li>
+                                <li><strong>Wilson:</strong> ABD - Arnavutluk desteği</li>
+                            </ul>
                         </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Zahirüddin Muhammed Babür</div>
-                                <div class="card-badge">Babürlü</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Vekâyi veya Bâbürnâme</div>
-                                <div class="work-description">Babür'ün hayatını ve fetihlerini anlatan otobiyografik eser.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Timur'un torunu, Babür İmparatorluğu'nun kurucusu</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Hasan Rumlu</div>
-                                <div class="card-badge">Timurlu</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Ahsenü`t Tevarih</div>
-                                <div class="work-description">Safevi ve komşu ülkelerin tarihini kapsayan 16. yüzyıl kroniği.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Safevi döneminde yaşamış Türkmen tarihçi</div>
-                        </div>
-                    </div>
-                    
-                    <!-- 8. Seyahatnameler -->
-                    <h2 class="group-title" id="category-8">8. Seyahatnameler</h2>
-                    <div class="cards-grid">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Wilhelm von Rubruck</div>
-                                <div class="card-badge">Seyahatname</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Moğolların Büyük Hanına Seyahat</div>
-                                <div class="work-description">13. yüzyılda Moğol İmparatorluğu'na yapılan seyahati anlatan önemli bir kaynak.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Flaman Fransisken keşiş, 1253-1255 yılları arasında seyahat etti</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Marco Polo</div>
-                                <div class="card-badge">Seyahatname</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Doğu ve Batı Kaynaklarında Çin Seyahati</div>
-                                <div class="work-description">Marco Polo'nun Asya seyahatlerini anlatan meşhur seyahatname.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Venedikli tüccar ve kaşif, 13. yüzyıl</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">İbn Battuta</div>
-                                <div class="card-badge">Seyahatname</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">İbn Battuta Seyahatnamesi</div>
-                                <div class="work-description">Ortaçağ İslam dünyası ve Asya'ya yapılan seyahatleri anlatan kapsamlı eser.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Faslı seyyah, dünyanın bilinen en büyük gezgini</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Tamim İbn Bahr</div>
-                                <div class="card-badge">Seyahatname</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Seyahatnamesi</div>
-                                <div class="work-description">Erken dönem İslam coğrafyacısının Orta Asya seyahatlerini anlatan eser.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: 9. yüzyılda Uygur başkentini ziyaret eden Arap seyyah</div>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">Ruy Gonzales de Claviyo</div>
-                                <div class="card-badge">Seyahatname</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="work-title">Anadolu, Orta Asya ve Timur</div>
-                                <div class="work-description">İspanyol elçinin Timur'un sarayına yaptığı seyahati anlatan güncesi.</div>
-                            </div>
-                            <div class="sticky-note">İpucu: Kastilya elçisi, 1403-1406 yıllarında seyahat etti</div>
+                        <div>
+                            <h4>📜 Antlaşmalar</h4>
+                            <ul>
+                                <li><strong>Versailles:</strong> Yugoslavya</li>
+                                <li><strong>Saint-Germain:</strong> Avusturya</li>
+                                <li><strong>Neuilly:</strong> Bulgaristan</li>
+                                <li><strong>Trianon:</strong> Macaristan</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="tab-content" id="flashcards-content">
-                <div class="controls">
-                    <button class="btn" id="prev-card">Önceki</button>
-                    <select class="category-selector" id="flashcard-category">
-                        <option value="all">Tüm Kategoriler</option>
-                        <option value="0">Modern Batılı Araştırmacılar</option>
-                        <option value="1">Türk ve Sovyet Araştırmacılar</option>
-                        <option value="2">Barthold'un Eserleri</option>
-                        <option value="3">Çin Kaynaklarından Çeviriler</option>
-                        <option value="4">Orta Çağ Türk Edebiyatı</option>
-                        <option value="5">Ortaçağ Tarih Kronikleri</option>
-                        <option value="6">Babürlü ve Timurlu Eserleri</option>
-                        <option value="7">Seyahatnameler</option>
-                    </select>
-                    <button class="btn" id="next-card">Sonraki</button>
-                </div>
+            <!-- Hafıza Teknikleri -->
+            <div id="memory" class="section">
+                <h2 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">🧠 Hafıza Teknikleri</h2>
                 
-                <div class="flashcard" id="flashcard">
-                    <div class="flashcard-inner">
-                        <div class="flashcard-front">
-                            <div class="flashcard-subtitle">Yazarı Bulun:</div>
-                            <div class="flashcard-question" id="flashcard-question"></div>
-                        </div>
-                        <div class="flashcard-back">
-                            <div class="flashcard-title" id="flashcard-answer"></div>
-                            <div class="flashcard-info" id="flashcard-info"></div>
-                        </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
+                    <div style="background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; padding: 25px; border-radius: 12px;">
+                        <h3>🗺️ Zihinsel Harita</h3>
+                        <p><strong>Balkanları zihninde çiz:</strong></p>
+                        <ul>
+                            <li><strong>Kuzey:</strong> Yugoslavya (büyük)</li>
+                            <li><strong>Doğu:</strong> Romanya (genişlemiş)</li>
+                            <li><strong>Güney:</strong> Yunanistan (deniz)</li>
+                            <li><strong>Orta:</strong> Bulgaristan (küçülmüş)</li>
+                            <li><strong>Batı:</strong> Arnavutluk (mini)</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; padding: 25px; border-radius: 12px;">
+                        <h3>📖 Hikaye Zinciri</h3>
+                        <p><strong>Olayları hikaye yap:</strong></p>
+                        <p><em>"1918'de Yugoslavya doğdu, 1919'da antlaşmalarla büyüdü, 1922'de Yunanistan ağladı, 1929'da herkes fakirleşti, 1934'te birleşmeye çalıştı..."</em></p>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, #f39c12, #e67e22); color: white; padding: 25px; border-radius: 12px;">
+                        <h3>🎵 Ritim ve Kafiye</h3>
+                        <p><strong>Tarihler için kafiye:</strong></p>
+                        <ul>
+                            <li>"On sekiz'de doğdu Yugos"</li>
+                            <li>"On dokuz'da antlaşma"</li>
+                            <li>"Yirmi iki'de Yunan kaçtı"</li>
+                            <li>"Yirmi dokuz'da kriz başladı"</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, #1abc9c, #16a085); color: white; padding: 25px; border-radius: 12px;">
+                        <h3>🔢 Görsel Sayılar</h3>
+                        <p><strong>Sayıları objelere çevir:</strong></p>
+                        <ul>
+                            <li><strong>%17 azınlık:</strong> 17=şansızlık sayısı</li>
+                            <li><strong>1.3M mülteci:</strong> 13=uğursuz</li>
+                            <li><strong>%90 okuma bilmiyor:</strong> 90=A ama ters</li>
+                            <li><strong>8$ gelir:</strong> 8=sonsuz fakirlik</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, #3498db, #2980b9); color: white; padding: 25px; border-radius: 12px;">
+                        <h3>🎯 Kelime Oyunları</h3>
+                        <p><strong>İsimler için çağrışım:</strong></p>
+                        <ul>
+                            <li><strong>Stambuliski:</strong> İstanbul+Çiftçi</li>
+                            <li><strong>Aleksandar:</strong> İskender=büyük</li>
+                            <li><strong>Megalo İdea:</strong> Mega=büyük idea</li>
+                            <li><strong>Vidovdan:</strong> Video+tarih</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, #e91e63, #ad1457); color: white; padding: 25px; border-radius: 12px;">
+                        <h3>⚡ Hızlı Tekrar</h3>
+                        <p><strong>Sınav öncesi 5 dakika:</strong></p>
+                        <ol>
+                            <li>VSNT antlaşmalarını say</li>
+                            <li>5 kritik tarihi tekrarla</li>
+                            <li>Her ülke için 1 lider</li>
+                            <li>İki ittifakı hatırla</li>
+                            <li>Derin nefes al!</li>
+                        </ol>
                     </div>
                 </div>
                 
-                <div class="quiz-footer">
-                    <div>Kart <span id="card-index">1</span>/<span id="card-total">42</span></div>
-                    <div>
-                        <button class="btn btn-accent" id="toggle-mode">Mod: Yazar → Eser</button>
+                <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 25px; border-radius: 12px; margin-top: 30px;">
+                    <h3 style="text-align: center; margin-bottom: 20px;">🚀 Son Dakika Özet Kartı</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                        <div>
+                            <h4>📜 Antlaşmalar</h4>
+                            <p>VSNT: V-Yugos, S-Avus, N-Bulgar, T-Macar</p>
+                        </div>
+                        <div>
+                            <h4>👑 Diktatörler</h4>
+                            <p>1929: Aleksandar<br>1936: 4 Ağustos<br>1938: Carol</p>
+                        </div>
+                        <div>
+                            <h4>🤝 İttifaklar</h4>
+                            <p>Küçük: ÇRY<br>Balkan: TYRY<br>Dışta: BA</p>
+                        </div>
+                        <div>
+                            <h4>📊 Sayılar</h4>
+                            <p>%17 azınlık<br>1.3M mülteci<br>%90 okuma bilmiyor</p>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div class="tab-content" id="quiz-content">
+            <!-- Quiz Bölümü -->
+            <div id="quiz" class="section">
+                <div class="quiz-header">
+                    <h2>🎮 Eğlenceli Tarih Yarışması</h2>
+                    <p>Bilgini test et, puan kazan, rozet topla!</p>
+                </div>
+                
+                <div class="difficulty-selector">
+                    <h3>Zorluk Seviyesi Seç:</h3>
+                    <div class="difficulty-btns">
+                        <button class="difficulty-btn easy selected" onclick="setDifficulty('easy')">
+                            🟢 Kolay<br><small>Temel sorular</small>
+                        </button>
+                        <button class="difficulty-btn medium" onclick="setDifficulty('medium')">
+                            🟡 Orta<br><small>Detaylı sorular</small>
+                        </button>
+                        <button class="difficulty-btn hard" onclick="setDifficulty('hard')">
+                            🔴 Zor<br><small>Uzman seviyesi</small>
+                        </button>
+                    </div>
+                </div>
+                
                 <div class="quiz-progress">
-                    <div class="quiz-progress-bar" id="quiz-progress-bar"></div>
+                    <div class="quiz-progress-fill" id="progressFill"></div>
                 </div>
                 
-                <div class="quiz-container">
-                    <div class="quiz-question" id="quiz-question"></div>
-                    <div class="quiz-options" id="quiz-options"></div>
-                    <div class="quiz-footer">
-                        <div class="quiz-score">Skor: <span id="quiz-score">0</span>/<span id="quiz-total">0</span></div>
-                        <button class="btn" id="next-question" disabled>Sonraki Soru</button>
+                <div class="question-container" id="questionContainer">
+                    <div class="question-header">
+                        <div class="timer" id="timer">⏱️ 30s</div>
+                        <div style="color: #7f8c8d;">
+                            Soru <span id="currentQ">1</span> / <span id="totalQ">10</span>
+                        </div>
                     </div>
+                    <div class="question-text" id="questionText"></div>
+                    <div class="options" id="optionsContainer"></div>
+                </div>
+                
+                <div class="quiz-controls">
+                    <div style="color: #2c3e50; font-weight: bold;">
+                        Puan: <span id="currentScore">0</span> / <span id="maxScore">10</span>
+                    </div>
+                    <div>
+                        <button class="btn btn-success" id="startBtn" onclick="startQuiz()">🚀 Yarışmaya Başla!</button>
+                        <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" style="display: none;">Sonraki ➡️</button>
+                    </div>
+                    <div style="color: #e74c3c; font-weight: bold;">
+                        Seri: <span id="currentStreak">0</span>
+                    </div>
+                </div>
+                
+                <div class="result-section" id="resultSection">
+                    <h3 id="resultTitle">🎉 Tebrikler!</h3>
+                    <p id="resultScore"></p>
+                    <p id="resultMessage"></p>
+                    <div id="earnedBadges" style="margin: 20px 0;"></div>
+                    <button class="btn btn-primary" onclick="resetQuiz()">🔄 Tekrar Oyna</button>
                 </div>
             </div>
         </div>
     </div>
-    
-    <footer>
-        <p>Uğur sayesinde ders çalışmak daha eğlenceli</p>
-    </footer>
-    
+
     <script>
-        // Tüm kitap ve yazar verilerini tanımlama
-        const booksData = [
-            // 1. Modern Batılı Araştırmacıların Eserleri
-            { 
-                group: 0,
-                groupName: "Modern Batılı Araştırmacılar",
-                pairs: [
-                    { author: "René Grousset", book: "Bozkır İmparatorluğu", info: "Fransız tarihçi, Avrasya göçebe kültürlerini inceledi" },
-                    { author: "Jean-Paul Roux", book: "Türklerin Tarihi", info: "Fransız tarihçi ve dinler tarihçisi" },
-                    { author: "Denis Sinor", book: "Erken İç Asya Tarihi", info: "Macar asıllı İç Asya ve Altay dilleri uzmanı" },
-                    { author: "Peter Golden", book: "Türk Halkları Tarihine Giriş", info: "Amerikalı tarihçi, Türk ve Avrasya tarihi uzmanı" },
-                    { author: "Vasili Radlof", book: "Erste Lieferung", info: "Alman kökenli Rus Türkolog ve etnograf" },
-                    { author: "Arminus Vambery", book: "Bir Sahte Dervişin Asya-yı Vusta'ya Seyahati", info: "Macar Türkolog, Orta Asya'yı derviş kılığında gezen araştırmacı" },
-                    { author: "Anthony Jenkinson", book: "Seyahatnamesi", info: "İngiliz kâşif ve tüccar, 16. yüzyılda yaşadı" }
-                ]
-            },
-            // 2. Türk ve Sovyet Araştırmacıların Modern Eserleri
-            {
-                group: 1,
-                groupName: "Türk ve Sovyet Araştırmacılar",
-                pairs: [
-                    { author: "Akdes Nimet Kurat", book: "IV-XVIII. Yüzyıllarda Karadeniz Kuzeyinde Türk Kavimleri ve Devletleri", info: "Önemli Türk tarihçi, Rusya ve Avrasya tarihi uzmanı" },
-                    { author: "Akdes Nimet Kurat", book: "Topkapı Sarayı Müzesi Arşivindeki Altın Ordu, Kırım ve Türkistan Hanlıklarına Ait Yarlıklar ve Bitikler", info: "Arşiv belgeleri üzerine önemli çalışmalar yaptı" },
-                    { author: "A. Zeki Velidi Togan", book: "Umumi Türk Tarihine Giriş", info: "Başkurt kökenli tarihçi, Türkistan milli hareketi lideri" },
-                    { author: "Necib Asım", book: "Orhun Abideleri", info: "Osmanlı-Türk dil bilimci ve tarihçi" },
-                    { author: "Özkan İzgi", book: "Çin Elçisi Wang Yen-te'nin Uygur Seyahatnamesi", info: "Türk tarihçi, Uygur tarihi üzerine çalışmalar yaptı" }
-                ]
-            },
-            // 3. Barthold'un Eserleri
-            {
-                group: 2,
-                groupName: "Barthold'un Eserleri",
-                pairs: [
-                    { author: "V.V. Barthold", book: "Moğol İstilasına Kadar Türkistan", info: "Rus oryantalist, Orta Asya tarihi uzmanı" },
-                    { author: "V.V. Barthold", book: "Ali Şir Nevai ve Uluğ Bek monografileri", info: "Timurlu dönemi şahsiyetleri üzerine çalışmalar" },
-                    { author: "V.V. Barthold", book: "Orta Asya Türk Tarihi Hakkında Dersler", info: "Rus oryantalist, Orta Asya tarihi uzmanı" },
-                    { author: "V.V. Barthold", book: "İslam Medeniyeti Tarihi", info: "Rus oryantalist, İslam tarihi uzmanı" },
-                    { author: "V.V. Barthold", book: "Rusya ve Avrupa'da Oryantalizm", info: "Rus oryantalist, doğu araştırmaları uzmanı" },
-                    { author: "V.V. Barthold", book: "Semireçye Tarihi", info: "Rus oryantalist, Yedisu bölgesi uzmanı" },
-                    { author: "V.V. Barthold", book: "Türkmen Halkının Tarihi", info: "Rus oryantalist, Türkmen tarihi uzmanı" },
-                    { author: "V.V. Barthold", book: "Türkistan'ın Kültür Hayatının Tarihi", info: "Rus oryantalist, Türkistan kültür tarihi uzmanı" }
-                ]
-            },
-            // 4. Çin Kaynaklarından Çeviriler
-            {
-                group: 3,
-                groupName: "Çin Kaynaklarından Çeviriler",
-                pairs: [
-                    { author: "Ayşe Onat, Sema Orsoy ve Konuralp Ercilasun", book: "Çin Kaynaklarında Türkler: Han Hanedanlığı Tarihi", info: "Türk araştırmacılar, Çin kaynaklarını Türkçeye kazandırdılar" },
-                    { author: "Ayşe Onat", book: "Çin Kaynaklarında Türkler: Han Hanedanı Tarihinde 'Batı Bölgeleri'", info: "Türk araştırmacı, Çin kaynaklarını Türkçeye kazandırdı" },
-                    { author: "İsenbike Togan, Gülnar Kara ve Cahide Baysal", book: "Çin Kaynakları'nda Türkler: Eski T'ang Tarihi", info: "Türk araştırmacılar, T'ang dönemi Çin kaynaklarını çevirdiler" }
-                ]
-            },
-            // 5. Orta Çağ Dönemi Türk Edebiyatı ve Düşüncesi
-            {
-                group: 4,
-                groupName: "Orta Çağ Türk Edebiyatı",
-                pairs: [
-                    { author: "Yusuf Has Hacib", book: "Kutadgu Bilig", info: "11. yüzyılda Karahanlı döneminde yazıldı" },
-                    { author: "Kaşgarlı Mahmud", book: "Divânu Lügati't-Türk", info: "11. yüzyılda yazılan ilk Türkçe sözlük" },
-                    { author: "Ahmet Yesevi", book: "Divan-ı Hikmet", info: "Türk tasavvuf geleneğinin kurucusu" },
-                    { author: "Edip Ahmet Yükneki", book: "Atabet'ül Hakayık", info: "12. yüzyılda Karahanlı döneminde yazıldı" }
-                ]
-            },
-            // 6. Ortaçağ Dönemi Tarih Kronikleri
-            {
-                group: 5,
-                groupName: "Ortaçağ Tarih Kronikleri",
-                pairs: [
-                    { author: "Ata Melik Cüveyni", book: "Tarih-i Cihangüşâ", info: "13. yüzyılda İlhanlı devlet adamı ve tarihçi" },
-                    { author: "Reşidü'd-din Fazlullâh", book: "Câmi'u't-tevârîh", info: "İlhanlı veziri ve tarihçi, 14. yüzyıl başları" },
-                    { author: "Ötemiş Hacı", book: "Tarih-i Dost Sultan", info: "16. yüzyılda Harezm'de yaşamış tarihçi" },
-                    { author: "İmam-ı Ebü'l-Fütuh Abdülgafur", book: "Tarih-i Kaşgar", info: "Kaşgar bölgesi tarihçisi" },
-                    { author: "Muhammed Salih", book: "Şeybani-name", info: "16. yüzyıl başlarında Çağatay Türkçesiyle yazıldı" },
-                    { author: "Ebulgazi Bahadır Han", book: "Şecere-i Türk", info: "Hive Hanı ve tarihçi, 17. yüzyıl" }
-                ]
-            },
-            // 7. Babürlü ve Timurlu Dönemi Eserleri
-            {
-                group: 6,
-                groupName: "Babürlü ve Timurlu Eserleri",
-                pairs: [
-                    { author: "Gülbeden Begüm", book: "Hümayunnâme", info: "Babür'ün kızı ve ilk kadın tarihçilerden biri" },
-                    { author: "Cihangir", book: "Tüzük-i Jihangir", info: "Babürlü hükümdarı, Ekber'in oğlu" },
-                    { author: "Zahirüddin Muhammed Babür", book: "Vekâyi veya Bâbürnâme", info: "Timur'un torunu, Babür İmparatorluğu'nun kurucusu" },
-                    { author: "Hasan Rumlu", book: "Ahsenü`t Tevarih", info: "Safevi döneminde yaşamış Türkmen tarihçi" }
-                ]
-            },
-            // 8. Seyahatnameler
-            {
-                group: 7,
-                groupName: "Seyahatnameler",
-                pairs: [
-                    { author: "Wilhelm von Rubruck", book: "Moğolların Büyük Hanına Seyahat", info: "Flaman Fransisken keşiş, 1253-1255 yılları arasında seyahat etti" },
-                    { author: "Marco Polo", book: "Doğu ve Batı Kaynaklarında Çin Seyahati", info: "Venedikli tüccar ve kaşif, 13. yüzyıl" },
-                    { author: "İbn Battuta", book: "İbn Battuta Seyahatnamesi", info: "Faslı seyyah, dünyanın bilinen en büyük gezgini" },
-                    { author: "Tamim İbn Bahr", book: "Seyahatnamesi", info: "9. yüzyılda Uygur başkentini ziyaret eden Arap seyyah" },
-                    { author: "Ruy Gonzales de Claviyo", book: "Anadolu, Orta Asya ve Timur", info: "Kastilya elçisi, 1403-1406 yıllarında seyahat etti" }
-                ]
-            }
-        ];
+        // Oyun Durumu
+        let gameState = {
+            playerLevel: parseInt(localStorage.getItem('playerLevel')) || 1,
+            playerXP: parseInt(localStorage.getItem('playerXP')) || 0,
+            totalScore: parseInt(localStorage.getItem('totalScore')) || 0,
+            bestStreak: parseInt(localStorage.getItem('bestStreak')) || 0,
+            badges: JSON.parse(localStorage.getItem('badges')) || [false, false, false, false, false],
+            
+            // Quiz durumu
+            difficulty: 'easy',
+            currentQuestion: 0,
+            score: 0,
+            streak: 0,
+            timeLeft: 30,
+            timer: null,
+            questions: [],
+            isAnswered: false
+        };
 
-        // JavaScript kodunu burada yazın
+        // Quiz Soruları
+        const allQuestions = {
+            easy: [
+                {
+                    q: "Balkan Savaşları hangi yıllar arasında gerçekleşmiştir?",
+                    options: ["1910-1911", "1912-1913", "1914-1915", "1916-1917"],
+                    correct: 1,
+                    explanation: "Balkan Savaşları 1912-1913 yılları arasında gerçekleşti."
+                },
+                {
+                    q: "Versailles Antlaşması hangi tarihte imzalanmıştır?",
+                    options: ["28 Haziran 1919", "10 Eylül 1919", "27 Kasım 1919", "4 Haziran 1920"],
+                    correct: 0,
+                    explanation: "Versailles Antlaşması 28 Haziran 1919'da imzalandı."
+                },
+                {
+                    q: "Türk ordusu İzmir'e hangi tarihte girmiştir?",
+                    options: ["15 Mayıs 1919", "9 Eylül 1922", "28 Haziran 1921", "1 Ocak 1923"],
+                    correct: 1,
+                    explanation: "9 Eylül 1922'de Türk ordusu İzmir'e girdi."
+                },
+                {
+                    q: "'Sırp, Hırvat, Sloven Krallığı' hangi tarihte ilan edilmiştir?",
+                    options: ["1 Aralık 1918", "28 Haziran 1921", "9 Ocak 1929", "1 Ocak 1919"],
+                    correct: 0,
+                    explanation: "1 Aralık 1918'de ilan edildi."
+                },
+                {
+                    q: "Bulgaristan'da Aleksandr Stambuliski hangi partinin lideriydi?",
+                    options: ["Sosyal Demokrat Parti", "Liberal Parti", "Çiftçi Partisi", "İşçi Partisi"],
+                    correct: 2,
+                    explanation: "Stambuliski Çiftçi Partisi'nin lideriydi."
+                },
+                {
+                    q: "Küçük Antant hangi ülkelerden oluşuyordu?",
+                    options: ["Yugoslavya-Romanya-Bulgaristan", "Çekoslovakya-Romanya-Yugoslavya", "Yunanistan-Romanya-Bulgaristan", "Türkiye-Yugoslavya-Romanya"],
+                    correct: 1,
+                    explanation: "Küçük Antant: Çekoslovakya, Romanya, Yugoslavya"
+                },
+                {
+                    q: "1929 Dünya Ekonomik Krizi Balkanları nasıl etkilemiştir?",
+                    options: ["Demokrasiyi güçlendirdi", "Diktatörlüklere yol açtı", "Ekonomiyi canlandırdı", "Hiç etkilemedi"],
+                    correct: 1,
+                    explanation: "1929 krizi diktatörlüklere geçişi hızlandırdı."
+                }
+            ],
+            medium: [
+                {
+                    q: "Yugoslavya'da 'Vidovdan Anayasası' hangi tarihte kabul edilmiştir?",
+                    options: ["1 Aralık 1918", "28 Haziran 1921", "9 Ocak 1929", "9 Ekim 1934"],
+                    correct: 1,
+                    explanation: "Vidovdan Anayasası 28 Haziran 1921'de kabul edildi."
+                },
+                {
+                    q: "Yugoslavya'nın nüfusunun yüzde kaçı azınlıktan oluşuyordu?",
+                    options: ["15%", "17%", "20%", "25%"],
+                    correct: 1,
+                    explanation: "Yugoslavya nüfusunun %17'si azınlıktı."
+                },
+                {
+                    q: "Arnavutluk'ta okuma-yazma bilmeyenlerin oranı ne kadardı?",
+                    options: ["%80", "%85", "%90", "%95"],
+                    correct: 2,
+                    explanation: "Arnavutluk'ta %90 okuma-yazma bilmiyordu."
+                },
+                {
+                    q: "Balkan Antantı hangi tarihte kurulmuştur?",
+                    options: ["9 Şubat 1933", "9 Şubat 1934", "9 Şubat 1935", "9 Şubat 1936"],
+                    correct: 1,
+                    explanation: "Balkan Antantı 9 Şubat 1934'te kuruldu."
+                },
+                {
+                    q: "Yunanistan'da mülteci sayısı ne kadardı?",
+                    options: ["1 milyon", "1.3 milyon", "1.5 milyon", "2 milyon"],
+                    correct: 1,
+                    explanation: "1.3 milyon Yunan mülteci anavatana döndü."
+                }
+            ],
+            hard: [
+
+                  {
+                    q: "Bulgaristan'da 'Zveno' grubu hangi yılda darbe yaptı?",
+                    options: ["19 Mayıs 1933", "19 Mayıs 1934", "19 Mayıs 1935", "19 Mayıs 1936"],
+                    correct: 1,
+                    explanation: "19 Mayıs 1934'te Zveno grubu darbe yaptı."
+                },
+              {
+                    q: "Türk ordusu İzmir'e girdiği tarih olan 9 Eylül 1922'de hangi olay gerçekleşmiştir?",
+                    options: ["Yunanlılar geri çekildi", "Küçük Asya felaketi sona erdi", "1.3 milyon mülteci Yunanistan'a döndü", "Megalo İdea çöktü"],
+                    correct: 1,
+                    explanation: "9 Eylül 1922 Küçük Asya felaketinin sonu olarak kabul edilir."
+    },
+    {
+        q: "Kosova'nın otonomi statüsü hangi Yugoslavya liderince kaldırıldı?",
+        options: ["Tito", "Slobodan Milošević", "Milan Kučan", "Franjo Tuđman"],
+        correct: 1,
+        explanation: "Milošević 1989'da Kosova ve Voyvodina'nın otonomi statülerini kaldırdı."
+    },
+                {
+                    q: "Arnavutluk'ta kişi başına düşen ortalama gelir kaç dolardı?",
+                    options: ["6 dolar", "8 dolar", "10 dolar", "12 dolar"],
+                    correct: 1,
+                    explanation: "Arnavutluk'ta kişi başına 8 dolar gelir vardı."
+                },
+                {
+                    q: "Yugoslavya'da II. Petar tahta çıktığında kaç yaşındaydı?",
+                    options: ["9", "10", "11", "12"],
+                    correct: 2,
+                    explanation: "II. Petar 11 yaşında tahta çıktı."
+                }
+            ]
+        };
+
+        // Sayfa yüklendiğinde
         document.addEventListener('DOMContentLoaded', function() {
-            // Tab işlemleri
-            const tabs = document.querySelectorAll('.tab');
-            const tabContents = document.querySelectorAll('.tab-content');
+            updateUI();
+            updateBadges();
+        });
 
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const tabId = this.getAttribute('data-tab');
-                    
-                    // Aktif tab'ı değiştir
-                    tabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // İlgili içeriği göster
-                    tabContents.forEach(content => {
-                        content.classList.remove('active');
-                        if (content.id === tabId + '-content') {
-                            content.classList.add('active');
-                        }
-                    });
-                    
-                    // Tab değiştiğinde ilgili başlatma işlevlerini çağır
-                    if (tabId === 'flashcards') {
-                        initFlashcards();
-                    } else if (tabId === 'quiz') {
-                        initQuiz();
-                    }
-                });
+        // UI Güncelleme
+        function updateUI() {
+            document.getElementById('playerLevel').textContent = gameState.playerLevel;
+            document.getElementById('playerXP').textContent = gameState.playerXP;
+            document.getElementById('totalScore').textContent = gameState.totalScore;
+            document.getElementById('streak').textContent = gameState.bestStreak;
+            
+            // Rozetleri güncelle
+            gameState.badges.forEach((unlocked, i) => {
+                const badge = document.getElementById(`badge${i + 1}`);
+                badge.className = `badge ${unlocked ? 'unlocked' : 'locked'} tooltip`;
+            });
+        }
+
+        // Rozet kontrolü
+        function updateBadges() {
+            let newBadges = [];
+            
+            // Rozet 1: İlk doğru cevap
+            if (!gameState.badges[0] && gameState.totalScore > 0) {
+                gameState.badges[0] = true;
+                newBadges.push("🌟 İlk Başarı!");
+            }
+            
+            // Rozet 2: 5 doğru üst üste
+            if (!gameState.badges[1] && gameState.streak >= 5) {
+                gameState.badges[1] = true;
+                newBadges.push("🔥 Ateşli Seri!");
+            }
+            
+            // Rozet 3: Quiz tamamla
+            if (!gameState.badges[2] && gameState.currentQuestion >= 10) {
+                gameState.badges[2] = true;
+                newBadges.push("🎯 Tamamlayıcı!");
+            }
+            
+            // Rozet 4: 80% üzeri
+            if (!gameState.badges[3] && gameState.currentQuestion > 0) {
+                const percent = (gameState.score / gameState.currentQuestion) * 100;
+                if (percent >= 80) {
+                    gameState.badges[3] = true;
+                    newBadges.push("🏆 Mükemmeliyetçi!");
+                }
+            }
+            
+            // Rozet 5: 100 XP
+            if (!gameState.badges[4] && gameState.playerXP >= 100) {
+                gameState.badges[4] = true;
+                newBadges.push("👑 Tarih Uzmanı!");
+            }
+            
+            if (newBadges.length > 0) {
+                showNewBadges(newBadges);
+                saveGame();
+            }
+        }
+
+        // Yeni rozet gösterimi
+        function showNewBadges(badges) {
+            const earnedDiv = document.getElementById('earnedBadges');
+            if (earnedDiv) {
+                earnedDiv.innerHTML = '<h4>🎉 Yeni Rozetler!</h4>' + 
+                    badges.map(b => `<p>${b}</p>`).join('');
+            }
+            
+            // Kutlama efekti
+            document.body.style.background = 'linear-gradient(135deg, #f39c12, #e67e22)';
+            setTimeout(() => {
+                document.body.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            }, 1000);
+        }
+
+        // Oyun kaydetme
+        function saveGame() {
+            localStorage.setItem('playerLevel', gameState.playerLevel);
+            localStorage.setItem('playerXP', gameState.playerXP);
+            localStorage.setItem('totalScore', gameState.totalScore);
+            localStorage.setItem('bestStreak', gameState.bestStreak);
+            localStorage.setItem('badges', JSON.stringify(gameState.badges));
+        }
+
+        // Sekme gösterme
+        function showSection(sectionName) {
+            // Tüm sekmeleri gizle
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
             });
             
-            // Kategori atla seçeneği
-            const jumpToCategory = document.getElementById('jump-to-category');
-            jumpToCategory.addEventListener('change', function() {
-                if (this.value) {
-                    const targetElement = document.getElementById(this.value);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
+            // Seçilen sekmeyi göster
+            document.getElementById(sectionName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Konu detayı aç/kapat
+        function toggleTopic(topicId) {
+            const topic = document.getElementById(topicId);
+            const isVisible = topic.style.display === 'block';
+            
+            // Tüm konuları kapat
+            document.querySelectorAll('.topic-detail').forEach(detail => {
+                detail.style.display = 'none';
+            });
+            
+            // Seçileni aç/kapat
+            topic.style.display = isVisible ? 'none' : 'block';
+            
+            if (!isVisible) {
+                topic.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Zorluk seviyesi ayarla
+        function setDifficulty(level) {
+            gameState.difficulty = level;
+            
+            document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+        }
+
+        // Quiz başlat
+        function startQuiz() {
+            gameState.currentQuestion = 0;
+            gameState.score = 0;
+            gameState.streak = 0;
+            gameState.questions = shuffleArray([...allQuestions[gameState.difficulty]]).slice(0, 10);
+            
+            document.getElementById('startBtn').style.display = 'none';
+            document.getElementById('resultSection').style.display = 'none';
+            document.getElementById('questionContainer').style.display = 'block';
+            
+            showQuestion();
+        }
+
+        // Array karıştırma
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Soru göster
+        function showQuestion() {
+            if (gameState.currentQuestion >= gameState.questions.length) {
+                endQuiz();
+                return;
+            }
+            
+            const question = gameState.questions[gameState.currentQuestion];
+            gameState.isAnswered = false;
+            
+            document.getElementById('questionText').textContent = question.q;
+            document.getElementById('currentQ').textContent = gameState.currentQuestion + 1;
+            document.getElementById('totalQ').textContent = gameState.questions.length;
+            document.getElementById('currentScore').textContent = gameState.score;
+            document.getElementById('maxScore').textContent = gameState.questions.length;
+            document.getElementById('currentStreak').textContent = gameState.streak;
+            
+            // Seçenekleri oluştur
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const div = document.createElement('div');
+                div.className = 'option';
+                div.textContent = option;
+                div.onclick = () => selectAnswer(index);
+                container.appendChild(div);
+            });
+            
+            document.getElementById('nextBtn').style.display = 'none';
+            
+            // İlerleme çubuğu
+            const progress = ((gameState.currentQuestion + 1) / gameState.questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            
+            // Zamanlayıcı başlat
+            startTimer();
+        }
+
+        // Zamanlayıcı
+        function startTimer() {
+            gameState.timeLeft = 30;
+            updateTimer();
+            
+            gameState.timer = setInterval(() => {
+                gameState.timeLeft--;
+                updateTimer();
+                
+                if (gameState.timeLeft <= 0) {
+                    clearInterval(gameState.timer);
+                    if (!gameState.isAnswered) {
+                        selectAnswer(-1); // Zaman doldu, yanlış cevap
                     }
+                }
+            }, 1000);
+        }
+
+        // Zamanlayıcı güncelle
+        function updateTimer() {
+            const timerEl = document.getElementById('timer');
+            timerEl.textContent = `⏱️ ${gameState.timeLeft}s`;
+            
+            if (gameState.timeLeft <= 10) {
+                timerEl.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+                timerEl.style.animation = 'pulse 0.5s infinite';
+            } else {
+                timerEl.style.animation = 'none';
+            }
+        }
+
+        // Cevap seç
+        function selectAnswer(answerIndex) {
+            if (gameState.isAnswered) return;
+            
+            clearInterval(gameState.timer);
+            gameState.isAnswered = true;
+            
+            const question = gameState.questions[gameState.currentQuestion];
+            const options = document.querySelectorAll('.option');
+            
+            // Seçenekleri renklendir
+            options.forEach((option, index) => {
+                option.style.pointerEvents = 'none';
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === answerIndex && index !== question.correct) {
+                    option.classList.add('incorrect');
                 }
             });
             
-            // Tümünü genişlet/daralt butonları
-            const expandAllBtn = document.getElementById('expand-all');
-            const collapseAllBtn = document.getElementById('collapse-all');
+            // Puan hesapla
+            if (answerIndex === question.correct) {
+                gameState.score++;
+                gameState.streak++;
+                
+                // XP hesapla
+                let xp = 10;
+                if (gameState.difficulty === 'medium') xp = 15;
+                if (gameState.difficulty === 'hard') xp = 20;
+                if (gameState.timeLeft > 20) xp += 5; // Hız bonusu
+                
+                gameState.playerXP += xp;
+                gameState.totalScore += xp;
+                
+                // Seviye kontrolü
+                if (gameState.playerXP >= gameState.playerLevel * 50) {
+                    gameState.playerLevel++;
+                    gameState.playerXP = 0;
+                    showLevelUp();
+                }
+                
+                // En iyi seri güncelle
+                if (gameState.streak > gameState.bestStreak) {
+                    gameState.bestStreak = gameState.streak;
+                }
+                
+                showMessage("🎉 Doğru! +" + xp + " XP", "success");
+            } else {
+                gameState.streak = 0;
+                showMessage("❌ Yanlış! Doğru cevap: " + question.options[question.correct], "error");
+            }
             
-            expandAllBtn.addEventListener('click', function() {
-                const cards = document.querySelectorAll('.card');
-                cards.forEach(card => {
-                    card.style.maxHeight = 'none';
-                    card.classList.add('expanded');
-                });
+            // Açıklama göster
+            if (question.explanation) {
+                setTimeout(() => {
+                    showMessage("💡 " + question.explanation, "info");
+                }, 1000);
+            }
+            
+            document.getElementById('nextBtn').style.display = 'inline-block';
+            updateUI();
+            updateBadges();
+            saveGame();
+        }
+
+        // Seviye atlama göster
+        function showLevelUp() {
+            setTimeout(() => {
+                showMessage(`🎉 SEVİYE ATLADIN! Seviye ${gameState.playerLevel}! 🎉`, "levelup");
+            }, 500);
+        }
+
+        // Mesaj göster
+        function showMessage(text, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.style.position = 'fixed';
+            messageDiv.style.top = '20px';
+            messageDiv.style.right = '20px';
+            messageDiv.style.padding = '15px 20px';
+            messageDiv.style.borderRadius = '8px';
+            messageDiv.style.color = 'white';
+            messageDiv.style.fontWeight = 'bold';
+            messageDiv.style.zIndex = '1000';
+            messageDiv.style.animation = 'fadeIn 0.5s ease';
+            messageDiv.textContent = text;
+            
+            switch (type) {
+                case 'success':
+                    messageDiv.style.background = 'linear-gradient(135deg, #27ae60, #229954)';
+                    break;
+                case 'error':
+                    messageDiv.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+                    break;
+                case 'info':
+                    messageDiv.style.background = 'linear-gradient(135deg, #3498db, #2980b9)';
+                    break;
+                case 'levelup':
+                    messageDiv.style.background = 'linear-gradient(135deg, #f39c12, #e67e22)';
+                    messageDiv.style.fontSize = '1.2em';
+                    break;
+            }
+            
+            document.body.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.style.opacity = '0';
+                messageDiv.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    if (document.body.contains(messageDiv)) {
+                        document.body.removeChild(messageDiv);
+                    }
+                }, 500);
+            }, 3000);
+        }
+
+        // Sonraki soru
+        function nextQuestion() {
+            gameState.currentQuestion++;
+            
+            // Seçenekleri temizle
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('correct', 'incorrect');
+                option.style.pointerEvents = 'auto';
             });
             
-            collapseAllBtn.addEventListener('click', function() {
-                const cards = document.querySelectorAll('.card');
-                cards.forEach(card => {
-                    card.style.maxHeight = '100px';
-                    card.classList.remove('expanded');
-                });
-            });
+            showQuestion();
+        }
+
+        // Quiz bitir
+        function endQuiz() {
+            document.getElementById('questionContainer').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'none';
             
-            // HAFIZA KARTLARI FONKSİYONLARI
-            let currentCardIndex = 0;
-            let filteredCards = [];
-            let cardMode = 'authorToBook'; // Varsayılan mod: yazardan kitaba
+            const percentage = Math.round((gameState.score / gameState.questions.length) * 100);
             
-            function initFlashcards() {
-                filteredCards = getAllCards();
-                updateFlashcardCounter();
-                showCurrentCard();
-                
-                // Event listeners
-                document.getElementById('prev-card').addEventListener('click', prevCard);
-                document.getElementById('next-card').addEventListener('click', nextCard);
-                document.getElementById('flashcard').addEventListener('click', flipCard);
-                document.getElementById('toggle-mode').addEventListener('click', toggleCardMode);
-                document.getElementById('flashcard-category').addEventListener('change', filterCardsByCategory);
+            document.getElementById('resultScore').textContent = 
+                `${gameState.score} / ${gameState.questions.length} doğru (${percentage}%)`;
+            
+            let title = '';
+            let message = '';
+            
+            if (percentage >= 90) {
+                title = '🏆 EFSANE!';
+                message = 'Balkan tarihinin gerçek bir uzmanısınız! Sınavda kesinlikle başarılı olacaksınız!';
+            } else if (percentage >= 80) {
+                title = '🥇 Harika!';
+                message = 'Çok başarılı bir performans! Sınav için hazırsınız!';
+            } else if (percentage >= 70) {
+                title = '🥈 İyi!';
+                message = 'Konuları genel olarak kavramışsınız. Biraz daha çalışın!';
+            } else if (percentage >= 60) {
+                title = '🥉 Fena değil!';
+                message = 'Eğitim bölümünü tekrar gözden geçirmenizi öneririz.';
+            } else {
+                title = '📚 Çalışma zamanı!';
+                message = 'Hafıza teknikleri ve eğitim bölümlerini inceleyin.';
             }
             
-            function getAllCards() {
-                let allCards = [];
-                booksData.forEach(group => {
-                    group.pairs.forEach(pair => {
-                        allCards.push({
-                            author: pair.author,
-                            book: pair.book,
-                            info: pair.info,
-                            group: group.group
-                        });
-                    });
-                });
-                return allCards;
+            document.getElementById('resultTitle').textContent = title;
+            document.getElementById('resultMessage').textContent = message;
+            
+            // Bonus XP
+            const bonusXP = Math.floor(percentage / 10) * 5;
+            if (bonusXP > 0) {
+                gameState.playerXP += bonusXP;
+                gameState.totalScore += bonusXP;
             }
             
-            function filterCardsByCategory() {
-                const categoryValue = document.getElementById('flashcard-category').value;
-                
-                if (categoryValue === 'all') {
-                    filteredCards = getAllCards();
-                } else {
-                    const groupIndex = parseInt(categoryValue);
-                    filteredCards = getAllCards().filter(card => card.group === groupIndex);
-                }
-                
-                currentCardIndex = 0;
-                updateFlashcardCounter();
-                showCurrentCard();
-            }
+            updateBadges();
+            saveGame();
+            updateUI();
             
-            function showCurrentCard() {
-                if (filteredCards.length === 0) return;
-                
-                const card = filteredCards[currentCardIndex];
-                const questionElement = document.getElementById('flashcard-question');
-                const answerElement = document.getElementById('flashcard-answer');
-                const infoElement = document.getElementById('flashcard-info');
-                const flashcardSubtitle = document.querySelector('.flashcard-subtitle');
-                
-                // Flashcard içeriğini kart moduna göre ayarla
-                if (cardMode === 'authorToBook') {
-                    flashcardSubtitle.textContent = 'Yazarı Bulun:';
-                    questionElement.textContent = card.book;
-                    answerElement.textContent = card.author;
-                } else {
-                    flashcardSubtitle.textContent = 'Eseri Bulun:';
-                    questionElement.textContent = card.author;
-                    answerElement.textContent = card.book;
-                }
-                
-                infoElement.textContent = card.info || '';
-                
-                // Kart çevrilmiş olabilir, sıfırla
-                document.getElementById('flashcard').classList.remove('flipped');
-            }
+            document.getElementById('resultSection').style.display = 'block';
+        }
+
+        // Quiz sıfırla
+        function resetQuiz() {
+            document.getElementById('startBtn').style.display = 'inline-block';
+            document.getElementById('resultSection').style.display = 'none';
+            document.getElementById('questionContainer').style.display = 'none';
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('earnedBadges').innerHTML = '';
             
-            function updateFlashcardCounter() {
-                document.getElementById('card-index').textContent = currentCardIndex + 1;
-                document.getElementById('card-total').textContent = filteredCards.length;
-            }
+            gameState.currentQuestion = 0;
+            gameState.score = 0;
+            gameState.streak = 0;
+            gameState.isAnswered = false;
             
-            function prevCard() {
-                if (filteredCards.length === 0) return;
-                
-                currentCardIndex = (currentCardIndex - 1 + filteredCards.length) % filteredCards.length;
-                showCurrentCard();
-                updateFlashcardCounter();
-            }
-            
-            function nextCard() {
-                if (filteredCards.length === 0) return;
-                
-                currentCardIndex = (currentCardIndex + 1) % filteredCards.length;
-                showCurrentCard();
-                updateFlashcardCounter();
-            }
-            
-            function flipCard() {
-                document.getElementById('flashcard').classList.toggle('flipped');
-            }
-            
-            function toggleCardMode() {
-                const toggleBtn = document.getElementById('toggle-mode');
-                
-                if (cardMode === 'authorToBook') {
-                    cardMode = 'bookToAuthor';
-                    toggleBtn.textContent = 'Mod: Eser → Yazar';
-                } else {
-                    cardMode = 'authorToBook';
-                    toggleBtn.textContent = 'Mod: Yazar → Eser';
-                }
-                
-                showCurrentCard();
-            }
-            
-            // QUIZ FONKSİYONLARI
-            let currentQuizIndex = 0;
-            let quizQuestions = [];
-            let userScore = 0;
-            let selectedOption = null;
-            
-            function initQuiz() {
-                generateQuizQuestions();
-                resetQuiz();
-                showCurrentQuestion();
-                
-                // Event listeners
-                document.getElementById('next-question').addEventListener('click', nextQuestion);
-            }
-            
-            function generateQuizQuestions() {
-                quizQuestions = [];
-                const allCards = getAllCards();
-                
-                // 10 soru oluştur
-                for (let i = 0; i < 10; i++) {
-                    // Rastgele bir kart seç
-                    const randomIndex = Math.floor(Math.random() * allCards.length);
-                    const randomCard = allCards[randomIndex];
-                    
-                    // Rastgele soru tipi (yazar-kitap veya kitap-yazar)
-                    const questionType = Math.random() > 0.5 ? 'authorToBook' : 'bookToAuthor';
-                    
-                    // Seçenekler için 3 yanlış cevap ekle
-                    let options = [];
-                    if (questionType === 'authorToBook') {
-                        options.push({ text: randomCard.book, correct: true });
-                        
-                        // 3 yanlış kitap ismi ekle
-                        let wrongOptions = 0;
-                        while (wrongOptions < 3) {
-                            const wrongIndex = Math.floor(Math.random() * allCards.length);
-                            if (wrongIndex !== randomIndex && !options.some(opt => opt.text === allCards[wrongIndex].book)) {
-                                options.push({ text: allCards[wrongIndex].book, correct: false });
-                                wrongOptions++;
-                            }
-                        }
-                    } else {
-                        options.push({ text: randomCard.author, correct: true });
-                        
-                        // 3 yanlış yazar ismi ekle
-                        let wrongOptions = 0;
-                        while (wrongOptions < 3) {
-                            const wrongIndex = Math.floor(Math.random() * allCards.length);
-                            if (wrongIndex !== randomIndex && !options.some(opt => opt.text === allCards[wrongIndex].author)) {
-                                options.push({ text: allCards[wrongIndex].author, correct: false });
-                                wrongOptions++;
-                            }
-                        }
+            clearInterval(gameState.timer);
+        }
+
+        // Klavye kısayolları
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('questionContainer').style.display !== 'none' && !gameState.isAnswered) {
+                if (e.key >= '1' && e.key <= '4') {
+                    const index = parseInt(e.key) - 1;
+                    const options = document.querySelectorAll('.option');
+                    if (options[index]) {
+                        selectAnswer(index);
                     }
-                    
-                    // Seçenekleri karıştır
-                    options = shuffleArray(options);
-                    
-                    // Soru ekle
-                    quizQuestions.push({
-                        questionType: questionType,
-                        question: questionType === 'authorToBook' 
-                            ? `"${randomCard.author}" adlı yazarın eseri hangisidir?` 
-                            : `"${randomCard.book}" adlı eserin yazarı kimdir?`,
-                        options: options,
-                        card: randomCard
-                    });
                 }
             }
             
-            function shuffleArray(array) {
-                for (let i = array.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [array[i], array[j]] = [array[j], array[i]];
-                }
-                return array;
+            if (e.key === 'Enter' && document.getElementById('nextBtn').style.display !== 'none') {
+                nextQuestion();
             }
-            
-            function resetQuiz() {
-                currentQuizIndex = 0;
-                userScore = 0;
-                updateQuizScore();
-                updateQuizProgressBar();
+        });
+
+        // Konsol komutları (debug için)
+        window.gameDebug = {
+            addXP: (amount) => {
+                gameState.playerXP += amount;
+                gameState.totalScore += amount;
+                updateUI();
+                saveGame();
+                console.log(`${amount} XP eklendi!`);
+            },
+            setLevel: (level) => {
+                gameState.playerLevel = level;
+                updateUI();
+                saveGame();
+                console.log(`Seviye ${level} olarak ayarlandı!`);
+            },
+            unlockAllBadges: () => {
+                gameState.badges = [true, true, true, true, true];
+                updateUI();
+                saveGame();
+                console.log('Tüm rozetler açıldı!');
+            },
+            resetProgress: () => {
+                localStorage.clear();
+                location.reload();
             }
+        };
+
+        // Başlangıç mesajı
+        console.log(`
+🏛️ İki Savaş Arası Balkanlar Oyunu
+=================================
+Debug Komutları:
+• gameDebug.addXP(miktar) - XP ekle
+• gameDebug.setLevel(seviye) - Seviye ayarla  
+• gameDebug.unlockAllBadges() - Tüm rozetleri aç
+• gameDebug.resetProgress() - İlerlemeyi sıfırla
+
+İyi oyunlar! 🎮
+        `);
+
+        // Sayfa kapatılırken kaydet
+        window.addEventListener('beforeunload', function() {
+            saveGame();
+        });
+
+        // Otomatik kaydetme (her 30 saniyede)
+        setInterval(saveGame, 30000);
+
+        // Responsive menu toggle (mobil için)
+        function toggleMobileMenu() {
+            const tabs = document.querySelector('.tabs');
+            tabs.style.display = tabs.style.display === 'none' ? 'flex' : 'none';
+        }
+
+        // Touch events (mobil cihazlar için)
+        let touchStartY = 0;
+        document.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            const touchEndY = e.changedTouches[0].clientY;
+            const diff = touchStartY - touchEndY;
             
-            function showCurrentQuestion() {
-                if (quizQuestions.length === 0) return;
-                
-                const currentQuestion = quizQuestions[currentQuizIndex];
-                document.getElementById('quiz-question').textContent = currentQuestion.question;
-                
-                const optionsContainer = document.getElementById('quiz-options');
-                optionsContainer.innerHTML = '';
-                
-                currentQuestion.options.forEach((option, index) => {
-                    const optionElement = document.createElement('div');
-                    optionElement.className = 'quiz-option';
-                    optionElement.textContent = option.text;
-                    optionElement.dataset.index = index;
-                    optionElement.addEventListener('click', selectOption);
-                    optionsContainer.appendChild(optionElement);
-                });
-                
-                // Sonraki soru butonunu devre dışı bırak
-                document.getElementById('next-question').disabled = true;
-                selectedOption = null;
+            // Yukarı kaydırma ile sonraki soruya geç
+            if (diff > 50 && document.getElementById('nextBtn').style.display !== 'none') {
+                nextQuestion();
             }
+        });
+
+        // Performans optimizasyonu
+        const debounce = (func, wait) => {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        };
+
+        // Scroll performansı için debounce
+        window.addEventListener('scroll', debounce(() => {
+            // Scroll işlemleri burada
+        }, 100));
+
+        // Başlangıç animasyonu
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.header').classList.add('fade-in');
+            document.querySelector('.player-stats').classList.add('fade-in');
             
-            function selectOption(e) {
-                if (selectedOption !== null) return; // Zaten seçim yapılmışsa
-                
-                selectedOption = parseInt(e.target.dataset.index);
-                const currentQuestion = quizQuestions[currentQuizIndex];
-                const options = document.querySelectorAll('.quiz-option');
-                
-                // Seçilen seçeneği işaretle
-                options[selectedOption].classList.add('selected');
-                
-                // Doğru cevabı göster
-                options.forEach((option, index) => {
-                    if (currentQuestion.options[index].correct) {
-                        option.classList.add('correct');
-                    } else if (index === selectedOption && !currentQuestion.options[index].correct) {
-                        option.classList.add('incorrect');
-                    }
-                });
-                
-                // Skoru güncelle
-                if (currentQuestion.options[selectedOption].correct) {
-                    userScore++;
-                    updateQuizScore();
-                }
-                
-                // Sonraki soru butonunu etkinleştir
-                document.getElementById('next-question').disabled = false;
-            }
+            setTimeout(() => {
+                document.querySelector('.badges').classList.add('fade-in');
+            }, 200);
             
-            function nextQuestion() {
-                currentQuizIndex++;
-                
-                if (currentQuizIndex < quizQuestions.length) {
-                    showCurrentQuestion();
-                    updateQuizProgressBar();
-                } else {
-                    // Quiz tamamlandı
-                    showQuizResults();
-                }
-            }
-            
-            function showQuizResults() {
-                const quizContainer = document.querySelector('.quiz-container');
-                quizContainer.innerHTML = `
-                    <div class="quiz-question">Quiz Tamamlandı!</div>
-                    <div class="card">
-                        <div class="card-content">
-                            <h3>Toplam Skorunuz: ${userScore}/${quizQuestions.length}</h3>
-                            <p>Türk tarihi hakkındaki bilgilerinizi test ettiniz. İşte sonuçlarınız.</p>
-                            <div class="sticky-note">
-                                ${userScore >= 8 ? 'Harika! Türk tarihi konusunda mükemmel bilgiye sahipsiniz.' : 
-                                   userScore >= 5 ? 'İyi iş! Türk tarihi hakkında iyi bir bilginiz var.' :
-                                   'Daha fazla çalışmaya devam edin. Türk tarihi hakkında daha fazla bilgi edinebilirsiniz.'}
-                            </div>
-                        </div>
-                    </div>
-                    <div style="text-align: center; margin-top: 1.5rem;">
-                        <button class="btn" id="restart-quiz">Yeniden Başla</button>
-                    </div>
-                `;
-                
-                document.getElementById('restart-quiz').addEventListener('click', function() {
-                    initQuiz();
-                });
-            }
-            
-            function updateQuizScore() {
-                document.getElementById('quiz-score').textContent = userScore;
-                document.getElementById('quiz-total').textContent = quizQuestions.length;
-            }
-            
-            function updateQuizProgressBar() {
-                const progressBar = document.getElementById('quiz-progress-bar');
-                const progressPercentage = ((currentQuizIndex) / quizQuestions.length) * 100;
-                progressBar.style.width = `${progressPercentage}%`;
-            }
-            
-            // Sayfa yüklendiğinde gerekli başlatmaları yap
-            initFlashcards();
-            initQuiz();
+            setTimeout(() => {
+                document.querySelector('.tabs').classList.add('fade-in');
+            }, 400);
         });
     </script>
 </body>
